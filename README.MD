@@ -1,19 +1,18 @@
 # Grow.it: Grow more... buy less
 
-[![HTML5,CSS3 and JS](https://github.com/FransLopez/logo-images/blob/master/logos/html5-css3-js.png)](http://www.w3.org/)[![Bootstrap](https://github.com/FransLopez/logo-images/blob/master/logos/bootstrap.png)](http://getbootstrap.com/)    
-[![React](https://github.com/FransLopez/logo-images/blob/master/logos/react.png)](https://facebook.github.io/react/)
-[![NodeJS](https://github.com/FransLopez/logo-images/blob/master/logos/nodejs.png)](https://nodejs.org/)
-[![Skylab](https://github.com/FransLopez/logo-images/blob/master/logos/skylab-56.png)](http://www.skylabcoders.com/)  
+[![HTML5,CSS3 and JS](https://github.com/FransLopez/logo-images/blob/master/logos/html5-css3-js.png)]          (http://www.w3.org/)[![Bootstrap](https://github.com/FransLopez/logo-images/blob/master/logos/bootstrap.png)](http://getbootstrap.com/)          [![React](https://github.com/FransLopez/logo-images/blob/master/logos/react.png)](https://facebook.github.io/react/)          [![NodeJS](https://github.com/FransLopez/logo-images/blob/master/logos/nodejs.png)](https://nodejs.org/)          [![Skylab](https://github.com/FransLopez/logo-images/blob/master/logos/skylab-56.png)](http://www.skylabcoders.com/)  
 
 ## Target
 
 Grow it is a collaborative urban orchards platform.
+
 -------------------------------------------------------
 
 
 ## Description
 
 This application allows to connect people through a growing community of owned plantations. Once a user is registered, he can create an orchard or collaborate in another ones, look for consulting, share the harvest surplus, etc.
+
 -------------------------------------------------------
 
 
@@ -27,6 +26,7 @@ This application allows to connect people through a growing community of owned p
 * MongoDB
 * Mongoose
 * React
+
 -------------------------------------------------------
 
 
@@ -34,19 +34,21 @@ This application allows to connect people through a growing community of owned p
 
 ### Mock up
 
-![Mock up landing page](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\mockUp_landingPage.png)
-![Mock up about us](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\mockUp_aboutUs.png)
-![Register user](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\mockUp_registerUser.png)
-![Log in](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\mockUp_logIn.png)
-![Home](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\mockUp_home.png)
-![Create/Edit orchard](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\mockUp_createEditOrchard.png)
-![Orchard](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\mockUp_orchard.png)
+![Mock up landing page](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_landingPage.png)
+![Mock up about us](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_aboutUs.png)
+![Register user](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_registerUser.png)
+![Log in](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_logIn.png)
+![Home](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_home.png)
+![Create/Edit orchard](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_createEditOrchard.png)
+![Orchard](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_orchard.png)
+
 -------------------------------------------------------
 
 
 ### Data model
 
-![Data model](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\Data_model.png)
+![Data model](https://github.com/csd0/Grow.it/blob/master/public/imgs/Data_model.png)
+
 -------------------------------------------------------
 
 
@@ -64,7 +66,8 @@ This application allows to connect people through a growing community of owned p
 | 2018-03-28 | Improvements, bug testing, hotfixes | 
 | 2018-03-30 | Demo day | 
 
-![Gantt](C:\Users\wwwcs\Documents\Project\Grow.it\public\imgs\Gantt.png)
+![Gantt](https://github.com/csd0/Grow.it/blob/master/public/imgs/Gantt.png)
+
 -------------------------------------------------------
 
 
