@@ -1,0 +1,162 @@
+html,
+body,
+.cover {
+    height: 100%;
+    background-color: #BEF202;
+}
+
+header {
+    background: #519548;
+  }
+
+.btn-success, .badge-success{
+    background-color: #1B676B;
+}
+
+.btn-danger {
+    background-color: #B95419;
+}
+
+.navbar-toggler{
+    margin-left: -12px;
+}
+
+.navbar-brand, .navbar-toogler-icon, .nav-link {
+    color: #BEF202 !important;
+    font-weight: bolder;
+}
+
+.cover {
+    background: url('img/guisantes.jpeg') top left no-repeat;
+    background-size: cover;
+    display: table;
+    width: 100%;
+    height: 100%;
+    padding: 0 20%;
+    box-shadow: inset 0 0 100px #000;
+}
+
+.lead{
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.cover-text {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    color:greenyellow;  
+    text-shadow:3px 3px #B15117;
+    font-family: 'Pacifico', cursive;
+}
+
+.cover-text h1 {
+    margin: 0;
+    font-size: 70px;
+    letter-spacing: -3px;
+    color:greenyellow;
+    text-shadow:3px 3px #B15117;
+    font-family: 'Pacifico', cursive;
+}
+
+.aboutUs{
+    margin-top: 15%;
+}
+
+.card-title{
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    color:greenyellow;
+}
+
+.card-text{
+    font-family: 'Pacifico';
+    font-size: 20px;
+}
+
+.form-user{
+    margin-top: 8%;
+    text-align: center;
+}
+
+.form-login{
+    margin-top: 15%;
+    text-align: center;
+}
+
+.form-group{
+    max-width: 35%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.user-img{
+    margin-top: 5%;
+}
+
+.searchBar{
+    margin-top: 10%;
+    text-align: center;
+}
+
+.dropdown{
+    margin-top: 4%;
+}
+
+.searchDropdown{
+    width: 300px;
+}
+
+.results, .cardResult{
+    margin-top: 9px;
+}
+
+.orchard-header{
+    margin-top: 5%;
+    text-align: center;
+}
+
+.form-orchard{
+    margin-top: 15%;
+    text-align: center;
+}
+
+
+.orchard-header{
+    border-bottom: #1B676B solid 1px;
+}
+
+.orchard-header h1{
+    font-family: 'Pacifico';
+    margin-top: 8%; 
+}
+
+.table-success > td , .table-success > th{
+    background-color: white;
+}
+
+.orchard-header .btn-success{
+    float: right;
+    margin-right: 17px;
+}
+
+.orchard-body, .contact-button{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.orchard-img, .orchard-img2{
+    max-height: 50px;
+    max-width: 50px;
+    opacity: 0.2;
+}
+
+.orchard-img2{
+    opacity: 1; 
+}
+
+.orchardGround{
+    padding: 5%;
+    background-color: #ff070712;
+}
