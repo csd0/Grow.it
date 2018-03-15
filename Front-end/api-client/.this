@@ -1,0 +1,17 @@
+{
+  "title": "Users API client",
+  "description": "REST API client for managing users based on request-promise.",
+  "tags": [
+    "node",
+    "js",
+    "request",
+    "promise",
+    "request-promise",
+    "client",
+    "assert",
+    "tdd",
+    "object",
+    "users"
+  ],
+  "created": "2018-03-07T11:21:18.393Z"
+}

@@ -1,6 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-// import './index.css';
+// import { findDOMNode } from 'react-dom';
+// import $ from 'jquery';
+
+// // import './index.css';
+
+
+// $(document).ready(function () {
+//     $("nav").find("li").on("click", "a", function () {
+//         $('.navbar-collapse.in').collapse('hide');
+//     });
+// });
 
 function Header() {
 

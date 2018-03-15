@@ -17,9 +17,11 @@ with(mongo) {
 
 const app = express()
 
+app.use(cors())
+
 app.use('/api', routes)
 
-app.use(cors())
+
 
 const port = process.env.PORT
 

@@ -1,0 +1,17 @@
+{
+  "name": "users-api-client-0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}
