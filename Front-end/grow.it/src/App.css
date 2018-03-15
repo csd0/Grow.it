@@ -63,17 +63,6 @@ header {
     margin-top: 15%;
 }
 
-.card-title{
-    font-family: 'Pacifico', cursive;
-    font-size: 50px;
-    color:greenyellow;
-}
-
-.card-text{
-    /* font-family: 'Pacifico'; */
-    font-size: 20px;
-}
-
 .form-user{
     margin-top: 8%;
     text-align: center;
@@ -110,6 +99,24 @@ header {
 
 .results, .cardResult{
     margin-top: 9px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;  
+}
+
+.card{
+    max-width: 40%;
+    min-width: 350px;
+}
+
+.card-title{
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    color:greenyellow;
+}
+
+.card-text{
+    font-size: 20px;
 }
 
 .orchard-header{
