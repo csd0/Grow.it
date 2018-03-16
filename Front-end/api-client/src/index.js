@@ -30,8 +30,12 @@ const api = {
         return this._call('get', 'orchards')
     },
 
-    register(name, surname, email, username, password) {
-        return this._call('post', 'user', { name, surname, email, username, password })
+    register(name, surname, email, username, password, description) {
+        return this._call('post', 'user', { name, surname, email, username, password, description })
+    },
+
+    registerOrchard( name, location, m2, collaborators, consulting, description){
+        return this._call('post', 'orchard', { name, location, m2, collaborators, consulting, description })
     },
 
     remove(id, username, password) {

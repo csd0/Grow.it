@@ -2,9 +2,9 @@ const { success, fail } = require('./api-utils')
 const logic = require('../../logic')
 
 module.exports = (req, res) => {
-    const { body: { name, surname, email, username, password, description } } = req
+    const { body: { name, location, m2, collaborators, consulting, description } } = req
 
-    logic.register(name, surname, email, username, password, description)
+    logic.registerOrchard(name, location, m2, collaborators, consulting, description)
         .then(id => {
             res.json(success({ id }))
         })

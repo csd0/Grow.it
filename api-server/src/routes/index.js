@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const bodyParser = require('body-parser')
-const { list, listOrchard, create, update, delete: _delete, retrieve } = require('./handlers')
+const { list, listOrchard, create, createOrchard, update, delete: _delete, retrieve } = require('./handlers')
 
 const router = Router()
 
@@ -11,6 +11,8 @@ router.get('/orchards', listOrchard)
 const jsonBodyParser = bodyParser.json()
 
 router.post('/user', jsonBodyParser, create)
+
+router.post('/orchard', jsonBodyParser, createOrchard)
 
 router.put('/user/:id', jsonBodyParser, update)
 

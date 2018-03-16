@@ -1,16 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-// import { findDOMNode } from 'react-dom';
-// import $ from 'jquery';
+// import { Navbar,Nav,NavItem,NavDropdown, MenuItem } from 'react-bootstrap'
 
-// // import './index.css';
-
-
-// $(document).ready(function () {
-//     $("nav").find("li").on("click", "a", function () {
-//         $('.navbar-collapse.in').collapse('hide');
-//     });
-// });
 
 function Header() {
 
@@ -28,7 +19,7 @@ function Header() {
                             <ul className="navbar-nav">
                                 <li className="nav-item active">
                                     <a className="nav-link" href="#">Home
-                                    <span className="sr-only">(current)</span>
+                                    <span className="sr-only" >(current)</span>
                                     </a>
                                 </li>
                                 <li className="nav-item active">
@@ -53,6 +44,8 @@ function Header() {
                 </div>
             </nav>
         </header>
+
+    
     )
 }
 

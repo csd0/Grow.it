@@ -1,4 +1,5 @@
 import React from 'react'
+// TO DO : Import all this images from archive
 import tomato from './styles/img/tomato.png'
 import lettuce from './styles/img/lettuce.png'
 import corn from './styles/img/corn.png'

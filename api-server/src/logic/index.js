@@ -4,7 +4,7 @@ const validate = require('./validate')
 const uuid = require('uuid/v4')
 
 module.exports = {
-    register(name, surname, email, username, password) {
+    register(name, surname, email, username, password, description) {
         return Promise.resolve()
             .then(() => {
                 validate({ name, surname, email, username, password })
@@ -16,18 +16,39 @@ module.exports = {
 
                 const id = uuid()
 
-                return User.create({ id, name, surname, email, username, password })
+                return User.create({ id, name, surname, email, username, password, description })
                     .then(() => id)
             })
     },
+
+
+    registerOrchard(name, location, m2, collaborators, consulting, description){
+        return Promise.resolve()
+            .then(() => {
+                validate({ name, location, m2})
+
+                return Orchard.findOne({ name })
+            })
+            .then(orchard => {
+                if (orchard) throw Error('orchard already exists')
+
+                const id = uuid()
+
+                return Orchard.create({ name, location, m2, collaborators, consulting, description })
+                    .then(() => id)
+            })
+    },
+
 
     list() {
         return User.find({}, { _id: 0, id: 1, name: 1, surname: 1, email: 1, username: 1 })
     },
 
+
     listOrchard() {
         return Orchard.find()
     },
+
 
     update(id, name, surname, email, username, password, newUsername, newPassword) {
         return Promise.resolve()
@@ -51,6 +72,7 @@ module.exports = {
             })
     },
 
+
     retrieve(id) {
         return Promise.resolve()
             .then(() => {
@@ -65,6 +87,7 @@ module.exports = {
                 return user
             })
     },
+
 
     remove(id, username, password) {
         return Promise.resolve()

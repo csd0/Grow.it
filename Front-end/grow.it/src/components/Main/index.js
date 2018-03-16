@@ -7,6 +7,8 @@ import Login from '../Login'
 import Registerorchard from '../Registerorchard'
 import Search from '../Search'
 import Orchard from '../Orchard'
+import SuccessMsg from '../SuccessMsg'
+import ErrorMsg from '../ErrorMsg'
 
 
 function Main() {
@@ -21,6 +23,8 @@ function Main() {
             <Route path="/search" component={Search} />
             <Route path="/registerorchard" component={Registerorchard} />
             <Route path="/orchard" component={Orchard} />
+            <Route path="/register/successreg" component={SuccessMsg} />
+            <Route path="/register/failreg" component={ErrorMsg} />
             
         </div>
     )
