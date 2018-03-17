@@ -1,6 +1,6 @@
 # Grow.it: grow more... buy less
 
-![HTML5,CSS3 and JS](https://github.com/FransLopez/logo-images/blob/master/logos/html5-css3-js.png)          [![Bootstrap](https://github.com/FransLopez/logo-images/blob/master/logos/bootstrap.png)](http://getbootstrap.com/)          [![React](https://github.com/FransLopez/logo-images/blob/master/logos/react.png)](https://facebook.github.io/react/)          [![NodeJS](https://github.com/FransLopez/logo-images/blob/master/logos/nodejs.png)](https://nodejs.org/)          [![MongoDB](https://github.com/FransLopez/logo-images/blob/master/logos/mongodb.png)](https://www.mongodb.com/)          [![Skylab](https://github.com/FransLopez/logo-images/blob/master/logos/skylab-56.png)](http://www.skylabcoders.com/)  
+![HTML5,CSS3 and JS](doc/images/html5-css3-js.png)          [![Bootstrap](doc/images/bootstrap.png)](http://getbootstrap.com/)          [![React](doc/images/react.png)](https://facebook.github.io/react/)          [![NodeJS](doc/images/nodejs.png)](https://nodejs.org/)          [![MongoDB](doc/images/mongodb.png)](https://www.mongodb.com/)          [![Skylab](doc/images/skylab-56.png)](http://www.skylabcoders.com/)  
 
 ## Target
 
@@ -34,20 +34,20 @@ This application allows to connect people through a growing community of owned p
 
 ### Mock up
 
-![Mock up landing page](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_landingPage.png)
-![Mock up about us](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_aboutUs.png)
-![Register user](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_registerUser.png)
-![Log in](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_logIn.png)
-![Home](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_home.png)
-![Create/Edit orchard](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_createEditOrchard.png)
-![Orchard](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_orchard.png)
+![Mock up landing page](doc/images/mockUp_landingPage.png)
+![Mock up about us](doc/images/mockUp_aboutUs.png)
+![Register user](doc/images/mockUp_registerUser.png)
+![Log in](doc/images/mockUp_logIn.png)
+![Home](doc/images/mockUp_home.png)
+![Create/Edit orchard](doc/images/mockUp_createEditOrchard.png)
+![Orchard](doc/images/mockUp_orchard.png)
 
 -------------------------------------------------------
 
 
 ### Data model
 
-![Data model](https://github.com/csd0/Grow.it/blob/master/public/imgs/Data_model.png)
+![Data model](doc/images/Data_model.png)
 
 -------------------------------------------------------
 
@@ -66,7 +66,7 @@ This application allows to connect people through a growing community of owned p
 | 2018-03-28 | Improvements, bug testing, hotfixes | 
 | 2018-03-30 | Demo day | 
 
-![Gantt](https://github.com/csd0/Grow.it/blob/master/public/imgs/Gantt.png)
+![Gantt](doc/images/Gantt.png)
 
 -------------------------------------------------------
 

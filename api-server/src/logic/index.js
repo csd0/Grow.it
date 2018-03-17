@@ -1,5 +1,4 @@
-const User = require('../models/User')
-const Orchard = require('../models/Orchard')
+const { User, Orchard } = require('../models')
 const validate = require('./validate')
 const uuid = require('uuid/v4')
 
@@ -22,7 +21,7 @@ module.exports = {
     },
 
 
-    registerOrchard(name, location, m2, collaborators, consulting, description){
+    registerOrchard(name, location, m2, admitsCollaborators, admitsConsulting, description){
         return Promise.resolve()
             .then(() => {
                 validate({ name, location, m2})
@@ -34,7 +33,7 @@ module.exports = {
 
                 const id = uuid()
 
-                return Orchard.create({ name, location, m2, collaborators, consulting, description })
+                return Orchard.create({ name, location, m2, admitsCollaborators, admitsConsulting, description })
                     .then(() => id)
             })
     },
