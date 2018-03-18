@@ -4,9 +4,9 @@ const logic = require('../../logic')
 module.exports = (req, res) => {
     const { params: { _id } } = req
 
-    logic.retrieve(_id)
-        .then(user => {
-            res.json(success(user))
+    logic.retrieveOrchard(_id)
+        .then(orchard => {
+            res.json(success(orchard))
         })
         .catch(err => {
             res.json(fail(err.message))

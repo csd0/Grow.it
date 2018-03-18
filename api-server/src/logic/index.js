@@ -3,6 +3,14 @@ const validate = require('./validate')
 const uuid = require('uuid/v4')
 
 module.exports = {
+
+    /////////// USERS ///////////////
+    
+    list() {
+        return User.find({}, { _id: 0, id: 1, name: 1, surname: 1, email: 1, username: 1 })
+    },
+
+
     register(name, surname, email, username, password, description) {
         return Promise.resolve()
             .then(() => {
@@ -18,6 +26,91 @@ module.exports = {
                 return User.create({ id, name, surname, email, username, password, description })
                     .then(() => id)
             })
+    },
+
+
+    update(_id, name, surname, email, username, password, newUsername, newPassword, description) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ _id, name, surname, email, username, password, newUsername, newPassword, description })
+
+                return User.findOne({ username: newUsername })
+            })
+            .then(user => {
+                if (user) throw Error('username already exists')
+
+                return User.findOne({ _id: _id })
+            })
+            .then(user => {
+                if (!user) throw Error('user does not exists')
+
+                if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
+
+                //return User.updateOne({ id }, { $set: { name, surname, email, username: newUsername, password: newPassword } }) // NOTE $set also works here, but it can be simplified as following statement
+                return User.updateOne({ _id }, { name, surname, email, username: newUsername, password: newPassword, description })
+            })
+    },
+
+
+    retrieve(_id) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ _id })
+
+                //return User.findOne({ id }, 'id name surname email username') // WARN! it returns _id too!
+                return User.findOne({ _id: _id }, { _id: 0, password: 0 })
+            })
+            .then(user => {
+                if (!user) throw Error('user does not exist')
+
+                return user
+            })
+    },
+
+
+    remove(_id, username, password) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ _id, username, password })
+
+                return User.findOne({ _id: _id })
+            })
+            .then(user => {
+                if (!user) throw Error('user does not exist')
+
+                if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
+
+                return User.deleteOne({ _id })
+            })
+    },
+
+
+    searchUser(query) {
+        return Promise.resolve()
+            .then(() => {
+              
+                return User.find( { $or: [ 
+                    {  name:new RegExp(query, "i") }, 
+                    {  surname: new RegExp(query, "i") },
+                    {  email: new RegExp(query, "i") },
+                    {  username: new RegExp(query, "i") },
+                    {  description: new RegExp(query, "i") }
+                ] } )
+                
+            })
+            .then(user => {
+                if (!user) throw Error('no results for specified search')
+
+                return user
+            })
+    },
+
+
+
+    /////////// ORCHARDS ///////////////
+
+    listOrchard() {
+        return Orchard.find()
     },
 
 
@@ -39,68 +132,55 @@ module.exports = {
     },
 
 
-    list() {
-        return User.find({}, { _id: 0, id: 1, name: 1, surname: 1, email: 1, username: 1 })
-    },
-
-
-    listOrchard() {
-        return Orchard.find()
-    },
-
-
-    update(id, name, surname, email, username, password, newUsername, newPassword) {
+    updateOrchard ( _id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription ) {
         return Promise.resolve()
             .then(() => {
-                validate({ id, name, surname, email, username, password, newUsername, newPassword })
+                validate({ _id, newName, newLocation, newM2, newDescription })
 
-                return User.findOne({ username: newUsername })
+                return Orchard.findOne({ name: newName })
             })
-            .then(user => {
-                if (user) throw Error('username already exists')
+            .then(orchard => {
+                if (orchard) throw Error( 'orchard already exists' )
 
-                return User.findOne({ id })
+                return Orchard.findOne({ _id: _id })
             })
-            .then(user => {
-                if (!user) throw Error('user does not exists')
+            .then(orchard => {
+                if (!orchard) throw Error('orchard does not exists')
 
-                if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
+                return Orchard.updateOne({ _id }, { name: newName, location: newLocation, m2: newM2, admitsCollaborators: newAdmitsCollaborators, admitsConsulting: newAdmitsConsulting, descriptio: newDescription })
+            })
+    },
+    
+    retrieveOrchard(_id) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ _id })
 
-                //return User.updateOne({ id }, { $set: { name, surname, email, username: newUsername, password: newPassword } }) // NOTE $set also works here, but it can be simplified as following statement
-                return User.updateOne({ id }, { name, surname, email, username: newUsername, password: newPassword })
+                return Orchard.findOne({ _id: _id }, { _id: 0})
+            })
+            .then(orchard => {
+                if (!orchard) throw Error('orchard does not exist')
+
+                return orchard
             })
     },
 
 
-    retrieve(id) {
+    removeOrchard(_id) {
         return Promise.resolve()
             .then(() => {
-                validate({ id })
+                validate({ _id })
 
-                //return User.findOne({ id }, 'id name surname email username') // WARN! it returns _id too!
-                return User.findOne({ id }, { _id: 0, password: 0 })
+                return Orchard.findOne({ _id: _id })
             })
-            .then(user => {
-                if (!user) throw Error('user does not exist')
+            .then(orchard => {
+                if (!orchard) throw Error('orchard does not exist')
 
-                return user
-            })
-    },
+                // if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
 
-
-    remove(id, username, password) {
-        return Promise.resolve()
-            .then(() => {
-                validate({ id, username, password })
-
-                return User.findOne({ id })
-            })
-            .then(user => {
-                if (!user) throw Error('user does not exist')
-
-                if (user.username !== username || user.password !== password) throw Error('username and/or password wrong')
-
-                return User.deleteOne({ id })
+                return Orchard.deleteOne({ _id })
             })
     }
+
+
 }

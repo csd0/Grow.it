@@ -2,11 +2,11 @@ const { success, fail } = require('./api-utils')
 const logic = require('../../logic')
 
 module.exports = (req, res) => {
-    const { params: { _id } } = req
+    const { params: { query } } = req
 
-    logic.retrieve(_id)
-        .then(user => {
-            res.json(success(user))
+    logic.searchUser(query)
+        .then(users => {
+            res.json(success(users))
         })
         .catch(err => {
             res.json(fail(err.message))

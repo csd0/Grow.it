@@ -3,9 +3,9 @@ const logic = require('../../logic')
 
 module.exports = (req, res) => {
     const { body: { username, password } } = req
-    const { params: { id } } = req
+    const { params: { _id } } = req
 
-    logic.remove(id, username, password)
+    logic.remove(_id, username, password)
         .then(() => {
             res.json(success())
         })
