@@ -1,7 +1,8 @@
 import React from 'react'
-import connect from './styles/img/connect.jpeg'
-import grow from './styles/img/grow.jpg'
-import share from './styles/img/share.jpeg'
+import './styles/main.css'
+import connect from './styles/images/connect.jpeg'
+import grow from './styles/images/grow.jpg'
+import share from './styles/images/share.jpeg'
 
 
 function Aboutus() {

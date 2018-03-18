@@ -1,0 +1,15 @@
+.form-group{
+    max-width: 35%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.form-user{
+    margin-top: 8%;
+    text-align: center;
+}
+
+.user-img{
+    margin-top: 5%;
+}

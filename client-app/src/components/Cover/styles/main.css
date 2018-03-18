@@ -1,0 +1,33 @@
+
+.cover {
+    background: url('images/guisantes.jpeg') top left no-repeat;
+    background-size: cover;
+    display: table;
+    width: 100%;
+    height: 100vh;
+    padding: 0 20%;
+    box-shadow: inset 0 0 100px #000;
+}
+
+.lead{
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.cover-text {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    color:greenyellow;  
+    text-shadow:3px 3px #B15117;
+    font-family: 'Pacifico', cursive;
+}
+
+.cover-text h1 {
+    margin: 0;
+    font-size: 70px;
+    letter-spacing: -3px;
+    color:greenyellow;
+    text-shadow:3px 3px #B15117;
+    font-family: 'Pacifico', cursive;
+}

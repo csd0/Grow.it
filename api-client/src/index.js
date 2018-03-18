@@ -8,8 +8,8 @@ const rp = require('request-promise')
 const api = {
     _baseUrl() {
         with (this) {
-            // return 'https://secure-shelf-47966.herokuapp.com/api'
-            return 'http://localhost:5000/api'
+            return 'https://secure-shelf-47966.herokuapp.com/api'
+            // return 'http://localhost:5000/api'
             // return `${protocol}://${host}:${port}/api`
         }
     },

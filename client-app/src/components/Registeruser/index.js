@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import api from 'users-api-client-0'
 import man from './styles/img/man.png'
+import './styles/main.css'
+
 
 class Registeruser extends Component {
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import './styles/main.css'
 import Cover from '../Cover'
 import Aboutus from '../Aboutus'
 import Registeruser from '../Registeruser'

@@ -1,0 +1,11 @@
+.form-group{
+    max-width: 35%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.form-login{
+    margin-top: 15%;
+    text-align: center;
+}

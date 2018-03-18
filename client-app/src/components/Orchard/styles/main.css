@@ -1,0 +1,43 @@
+
+.orchard-header{
+    margin-top: 5%;
+    text-align: center;
+}
+
+.orchard-header{
+    border-bottom: #1B676B solid 1px;
+}
+
+.orchard-header h1{
+    font-family: 'Pacifico';
+    margin-top: 8%; 
+}
+
+.table-success > td , .table-success > th{
+    background-color: white;
+}
+
+.orchard-header .btn-success{
+    float: right;
+    margin-right: 17px;
+}
+
+.orchard-body, .contact-button{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.orchard-img, .orchard-img2{
+    max-height: 50px;
+    max-width: 50px;
+    opacity: 0.2;
+}
+
+.orchard-img2{
+    opacity: 1; 
+}
+
+.orchardGround{
+    padding: 5%;
+    background-color: #ff070712;
+}

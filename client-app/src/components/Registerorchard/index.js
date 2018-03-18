@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import api from 'users-api-client-0'
+import './styles/main.css'
 
 
 class Registerorchard extends Component {
