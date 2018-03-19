@@ -156,7 +156,7 @@ module.exports = {
             .then(() => {
                 validate({ _id })
 
-                return Orchard.findOne({ _id: _id }, { _id: 0})
+                return Orchard.findOne({ _id: _id })
             })
             .then(orchard => {
                 if (!orchard) throw Error('orchard does not exist')

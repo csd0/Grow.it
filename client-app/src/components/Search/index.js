@@ -13,6 +13,7 @@ class Search extends Component {
         }
     }
 
+
     componentDidMount() {
         api.listOrchard()
             .then(orchards => this.setState({ orchards: orchards.data }))
@@ -20,7 +21,7 @@ class Search extends Component {
     }
 
 
-
+    
     render() {
 
         let orchards = this.state.orchards
@@ -77,7 +78,8 @@ class Search extends Component {
                             <div className="card-body">
                                 <p className="card-text">{orchard.location}</p>
                                 <p className="card-text">{orchard.m2} m2</p>
-                                <a href="#/orchard" className="btn btn-success">Go</a>
+                                {/* <a href="#/orchard/:{orchard._id}" className="btn btn-success">Go</a> */}
+                                <a href={`#/orchard/${orchard._id}`}     className="btn btn-success">Go</a>
                             </div>
                         </div>
                     )}

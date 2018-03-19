@@ -13,6 +13,10 @@
     margin-top: 8%; 
 }
 
+.badge-success{
+    margin-right: 5px;
+}
+
 .table-success > td , .table-success > th{
     background-color: white;
 }

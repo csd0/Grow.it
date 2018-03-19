@@ -23,20 +23,13 @@ const api = {
         })
     },
 
+    //////////////// USERS ////////////////
     list() {
         return this._call('get', 'users')
     },
 
-    listOrchard() {
-        return this._call('get', 'orchards')
-    },
-
     register(name, surname, email, username, password, description) {
         return this._call('post', 'user', { name, surname, email, username, password, description })
-    },
-
-    registerOrchard( name, location, m2, admitsCollaborators, admitsConsulting, description){
-        return this._call('post', 'orchard', { name, location, m2, admitsCollaborators, admitsConsulting, description })
     },
 
     remove(id, username, password) {
@@ -49,7 +42,29 @@ const api = {
 
     update(id, name, surname, email, newUsername, newPassword, username, password) {
         return this._call('put', `user/${id}`, { name, surname, email, newUsername, newPassword, username, password })
+    },
+
+    //////////////// ORCHARDS ////////////////
+    listOrchard() {
+        return this._call('get', 'orchards')
+    },
+
+    registerOrchard( name, location, m2, admitsCollaborators, admitsConsulting, description){
+        return this._call('post', 'orchard', { name, location, m2, admitsCollaborators, admitsConsulting, description })
+    },
+
+    retrieveOrchard(id) {
+        return this._call('get', `orchard/${id}`)
+    },
+
+    removeOrchard(id) {
+        return this._call('delete', `orchard/${id}`)
+    },
+
+    update(id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription) {
+        return this._call('put', `orchard/${id}`, { id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription })
     }
+
 }
 
 module.exports = api

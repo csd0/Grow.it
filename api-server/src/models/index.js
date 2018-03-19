@@ -23,7 +23,7 @@ const Plantation = new Schema({
         enum: ['carrot', 'onion'], // TODO end enum values
         required: true
     },
-    releaseDate: Date,
+    releaseDate: String,
     shared: Boolean,
     m2: {
         type: Number,
@@ -46,6 +46,7 @@ const Orchard = new Schema({
     },
     admitsCollaborators: Boolean,
     admitsConsulting: Boolean,
+    description: String,
     plantations: [Plantation],
     users: [
         {
