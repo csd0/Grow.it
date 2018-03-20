@@ -44,24 +44,22 @@ class Orchard extends Component {
 
     }
 
-  
+    // activates opacity in vegetables images in case the plantation is in the list
     activateOpacity = (str) => {
-        // activates opacity in vegetables images in case the plantation is in the list
-        let flag
+        
+        let flag 
         let species = []
 
-        // console.log(this.state.plantations.length)
-        // console.log(this.state.plantations[0].species)
-
-        // for (let i = 0; i<=this.state.plantations.length; i++){
-        //     species.push(this.state.plantations[i].species)
-        // }
+        for (let i = 0; i<this.state.plantations.length; i++){
+           species.push(this.state.plantations[i].species)
+        }
         
-        species.indexOf(str) === -1?
+        species.indexOf(str) === -1 ?
         flag = "img-fluid orchard-img"
         :
         flag = "img-fluid orchard-img2"
 
+        console.log('flag ->',flag)
         return flag
     
     }
@@ -137,24 +135,24 @@ class Orchard extends Component {
                             {                            
                             this.state.plantations.length>0?                                    
                             <div className="orchardGround">
-                                <img src={tomato} className="img-fluid orchard-img2" alt="tomato" />
-                                <img src={lettuce} className="img-fluid orchard-img2" alt="lettuce" />
-                                <img src={corn} className="img-fluid orchard-img" alt="corn" />
-                                <img src={carrot} className="img-fluid orchard-img2" alt="carrot" />
-                                <img src={potato} className="img-fluid orchard-img2" alt="potato" />
-                                <img src={aubergine} className="img-fluid orchard-img" alt="aubergine" />
-                                <img src={artichoke} className="img-fluid orchard-img" alt="artichoke" />
-                                <img src={beetroot} className="img-fluid orchard-img" alt="beetroot" />
-                                <img src={flower} className="img-fluid orchard-img" alt="flower" />
-                                <img src={garlic} className="img-fluid orchard-img" alt="garlic" />
-                                <img src={ginger} className="img-fluid orchard-img" alt="ginger" />
-                                <img src={green_pepper} className="img-fluid orchard-img" alt="green_pepper" />
-                                <img src={hot_pepper} className="img-fluid orchard-img" alt="hot_pepper" />
-                                <img src={leek} className="img-fluid orchard-img" alt="leek" />
+                                <img src={tomato} className={this.activateOpacity('tomato')} alt="tomato" />
+                                <img src={lettuce} className={this.activateOpacity('lettuce')} alt="lettuce" />
+                                <img src={corn} className={this.activateOpacity('corn')} alt="corn" />
+                                <img src={carrot} className={this.activateOpacity('carrot')} alt="carrot" />
+                                <img src={potato} className={this.activateOpacity('potato')} alt="potato" />
+                                <img src={aubergine} className={this.activateOpacity('aubergine')} alt="aubergine" />
+                                <img src={artichoke} className={this.activateOpacity('artichoke')} alt="artichoke" />
+                                <img src={beetroot} className={this.activateOpacity('beetroot')} alt="beetroot" />
+                                <img src={flower} className={this.activateOpacity('flower')} alt="flower" />
+                                <img src={garlic} className={this.activateOpacity('garlic')} alt="garlic" />
+                                <img src={ginger} className={this.activateOpacity('ginger')} alt="ginger" />
+                                <img src={green_pepper} className={this.activateOpacity('green_pepper')} alt="green_pepper" />
+                                <img src={hot_pepper} className={this.activateOpacity('hot_pepper')} alt="hot_pepper" />
+                                <img src={leek} className={this.activateOpacity('leek')} alt="leek" />
                                 <img src={onion} className={this.activateOpacity('onion')} alt="onion" />
-                                <img src={radish} className="img-fluid orchard-img" alt="radish" />
-                                <img src={red_pepper} className="img-fluid orchard-img" alt="red_pepper" />
-                                <img src={soybean} className="img-fluid orchard-img" alt="soybean" />
+                                <img src={radish} className={this.activateOpacity('radish')} alt="radish" />
+                                <img src={red_pepper} className={this.activateOpacity('red_pepper')} alt="red_pepper" />
+                                <img src={soybean} className={this.activateOpacity('soybean')} alt="soybean" />
 
                             </div>
                             :

@@ -114,10 +114,10 @@ module.exports = {
     },
 
 
-    registerOrchard(name, location, m2, admitsCollaborators, admitsConsulting, description){
+    registerOrchard(name, location, m2, postalCode, admitsCollaborators, admitsConsulting, description){
         return Promise.resolve()
             .then(() => {
-                validate({ name, location, m2})
+                validate({ name, location, m2, postalCode})
 
                 return Orchard.findOne({ name })
             })
@@ -126,7 +126,7 @@ module.exports = {
 
                 const id = uuid()
 
-                return Orchard.create({ name, location, m2, admitsCollaborators, admitsConsulting, description })
+                return Orchard.create({ name, location, m2, postalCode, admitsCollaborators, admitsConsulting, description })
                     .then(() => id)
             })
     },
@@ -180,7 +180,33 @@ module.exports = {
 
                 return Orchard.deleteOne({ _id })
             })
-    }
+    },
 
+    searchOrchard( postalCode, keyword ) {
+        return Promise.resolve()
+            .then(() => {
+                
+                let regExPc = new RegExp( postalCode, "i" )
+                let regExKey = new RegExp( keyword, "i" )
+
+                return Orchard
+                .find({
+                    $or:[
+                        {name: regExKey},
+                        {description: regExKey},
+                        {'plantations.species': regExKey}
+                    ],
+                    $and:[
+                        {postalCode: regExPc}
+                    ]
+                })
+                
+            })
+            .then(orchards => {
+                if (!orchards) throw Error('no results for specified search')
+
+                return orchards
+            })
+    }
 
 }

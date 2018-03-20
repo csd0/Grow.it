@@ -9,7 +9,10 @@ class Search extends Component {
         super()
 
         this.state = {
-            orchards: []
+            orchards: [],
+            postalCode: '',
+            keyword: '',
+            searchResults: []
         }
     }
 
@@ -20,54 +23,57 @@ class Search extends Component {
             .catch(console.error)
     }
 
-
     
+    // Next method fill registration user data
+
+    inputField = (e) => {
+        let prop = e.target.name
+        this.setState({[prop]: e.target.value})
+    }
+
+
+    // Call api method that search orchards
+
+    submit = () => {
+        api.searchOrchard(
+            this.state.postalCode,
+            this.state.keyword
+        )
+        .then(res => {
+            this.setState({searchResults: res.data})
+        })
+    }
+
+
     render() {
 
-        let orchards = this.state.orchards
+        let orchards = this.state.searchResults
 
         return (
             <div>
                 <div className="searchBar container">
-                    <div className="row align-items-center">
-                        <div className="col-lg-4">
-                            <div className="dropdown">
-                                <button className="btn btn-success dropdown-toggle searchDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Activity
-                    </button>
-                                <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <a className="dropdown-item" href="#!">Action</a>
-                                    <a className="dropdown-item" href="#!">Another action</a>
-                                </div>
+                    <form className="form_search" method="post" onSubmit={(e) => {e.preventDefault(); this.submit()}}>
+                        <div className="row align-items-center">
+                            
+                            <div className="col-lg-4">
+                                <input type="text" maxLength="5" className="form-search" placeholder="Postal code?" name= "postalCode" onChange={this.inputField}/>
+                            </div>
+                            <div className="col-lg-4">
+
+                                <input type="text" className="form-search" placeholder="Plantation? Keyword?" name= "keyword" onChange={this.inputField}/>
+
+                            </div>
+                            <div className="col-lg-4">
+                                <button className="btn-success btn-search" type="submit">Search</button>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <div className="dropdown">
-                                <button className="btn btn-success dropdown-toggle searchDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Location
-                    </button>
-                                <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <a className="dropdown-item" href="#!">Action</a>
-                                    <a className="dropdown-item" href="#!">Another action</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4">
-                            <div className="dropdown">
-                                <button className="btn btn-success dropdown-toggle searchDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Plantation
-                    </button>
-                                <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <a className="dropdown-item" href="#!">Action</a>
-                                    <a className="dropdown-item" href="#!">Another action</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
+
+
+
+
+
 
                 <div className="results container">
 
@@ -78,8 +84,7 @@ class Search extends Component {
                             <div className="card-body">
                                 <p className="card-text">{orchard.location}</p>
                                 <p className="card-text">{orchard.m2} m2</p>
-                                {/* <a href="#/orchard/:{orchard._id}" className="btn btn-success">Go</a> */}
-                                <a href={`#/orchard/${orchard._id}`}     className="btn btn-success">Go</a>
+                                <a href={`#/orchard/${orchard._id}`} className="btn btn-success">Go</a>
                             </div>
                         </div>
                     )}

@@ -22,31 +22,13 @@ class Registeruser extends Component {
         }
     }
 
-    //Next 6 methods fill registration required user data
+    //Next method fill registration user data
 
-    fillName = (event) => {
-        this.setState({ name: event.target.value })
+    inputField = (e) => {
+        let prop = e.target.name
+        this.setState({[prop]: e.target.value})
     }
 
-    fillSurname = (event) => {
-        this.setState({ surname: event.target.value })
-    }
-
-    fillEmail = (event) => {
-        this.setState({ email: event.target.value })
-    }
-
-    fillUsername = (event) => {
-        this.setState({ username: event.target.value})
-    }
-
-    fillPassword = (event) => {
-        this.setState({ password: event.target.value})
-    }
-
-    fillDescription = (event) => {
-        this.setState({ description: event.target.value})
-    }
 
     // user registration
     submit = () => {
@@ -75,22 +57,22 @@ class Registeruser extends Component {
                 <img src={man} className="img-fluid user-img" alt="Responsive profile" />
                 <button type="button" className="btn btn-success">Upload</button>
                 <div className="form-group">
-                    <input type="text" className="form-control" id="formUserName" placeholder="Name" onChange={this.fillName}/>
+                    <input type="text" className="form-control" name="name" placeholder="Name" onChange={this.inputField}/>
                 </div>
                 <div className="form-group">
-                    <input type="text" className="form-control" id="formUserSurName" placeholder="Surname" onChange={this.fillSurname}/>
+                    <input type="text" className="form-control" name="surname" placeholder="Surname" onChange={this.inputField}/>
                 </div>
                 <div className="form-group">
-                    <input type="text" className="form-control" id="formUserEmail" placeholder="Email" onChange={this.fillEmail}/>
+                    <input type="text" className="form-control" name="email" placeholder="Email" onChange={this.inputField}/>
                 </div>
                 <div className="form-group">
-                    <input type="text" className="form-control" id="formUserUserName" placeholder="Username" onChange={this.fillUsername}/>
+                    <input type="text" className="form-control" name="username" placeholder="Username" onChange={this.fillUsername}/>
                 </div>
                 <div className="form-group">
-                    <input type="text" className="form-control" id="formUserPassword" placeholder="Password" onChange={this.fillPassword}/>
+                    <input type="text" className="form-control" name="password" placeholder="Password" onChange={this.fillPassword}/>
                 </div>
                 <div className="form-group">
-                    <textarea className="form-control" rows="3" id="formUserDescription" placeholder="Description" onChange={this.fillDescription}></textarea>
+                    <textarea className="form-control" rows="3" name="description" placeholder="Description" onChange={this.fillDescription}></textarea>
                 </div>
                 <button type="submit" className="btn btn-success">Save</button>
 

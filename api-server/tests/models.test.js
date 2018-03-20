@@ -5,9 +5,8 @@ const { User, Orchard } = require('../src/models')
 
 describe('models', () => {
     before(() => {
-        return mongoose.connect('mongodb://localhost/grow-it-models-test')
+        return mongoose.connect('mongodb://admin:admin@ds219879.mlab.com:19879/growitdb_test')
     })
-
     describe('create an orchard with admin and collaborator', () => {
         let orchard, admin, collaborator
 

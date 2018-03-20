@@ -8,8 +8,8 @@ const rp = require('request-promise')
 const api = {
     _baseUrl() {
         with (this) {
-            return 'https://secure-shelf-47966.herokuapp.com/api'
-            // return 'http://localhost:5000/api'
+            // return 'https://secure-shelf-47966.herokuapp.com/api'
+            return 'http://localhost:5000/api'
             // return `${protocol}://${host}:${port}/api`
         }
     },
@@ -49,8 +49,8 @@ const api = {
         return this._call('get', 'orchards')
     },
 
-    registerOrchard( name, location, m2, admitsCollaborators, admitsConsulting, description){
-        return this._call('post', 'orchard', { name, location, m2, admitsCollaborators, admitsConsulting, description })
+    registerOrchard( name, location, m2, postalCode, admitsCollaborators, admitsConsulting, description){
+        return this._call('post', 'orchard', { name, location, m2, postalCode, admitsCollaborators, admitsConsulting, description })
     },
 
     retrieveOrchard(id) {
@@ -61,8 +61,12 @@ const api = {
         return this._call('delete', `orchard/${id}`)
     },
 
-    update(id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription) {
-        return this._call('put', `orchard/${id}`, { id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription })
+    update( id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription ) {
+        return this._call( 'put', `orchard/${id}`, { id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription })
+    },
+
+    searchOrchard( postalCode, keyword ) {
+        return this._call('post', 'orchardq', { postalCode, keyword })
     }
 
 }

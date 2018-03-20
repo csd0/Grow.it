@@ -1,26 +1,35 @@
 const mongoose = require('mongoose')
 const { Schema, Schema: { ObjectId } } = mongoose
 
-const User = new Schema({ // TODO end data types definitions
+const User = new Schema({
     name: {
         type: String,
         required: true
     },
-    surname: String,
-    email: String,
+    surname: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
     username: {
         type: String,
         required: true,
         unique: true
     },
-    password: String,
+    password: {
+        type: String,
+        required: true
+    },
     description: String
 })
 
 const Plantation = new Schema({
     species: {
         type: String,
-        enum: ['carrot', 'onion'], // TODO end enum values
+        enum: [ 'tomato', 'lettuce', 'corn', 'carrot', 'potato', 'artichoke', 'beetroot', 'flower', 'garlic', 'ginger', 'green_pepper', 'hot_pepper', 'leek', 'onion', 'radish', 'red_pepper', 'soybean', 'aubergine'],
         required: true
     },
     releaseDate: String,
@@ -44,6 +53,10 @@ const Orchard = new Schema({
         type: Number,
         required: true
     },
+    postalCode: {
+        type: String,
+        required: true
+    },
     admitsCollaborators: Boolean,
     admitsConsulting: Boolean,
     description: String,
@@ -55,7 +68,6 @@ const Orchard = new Schema({
                 ref: 'User',
                 required: true
             },
-
             role: {
                 type: String,
                 enum: ['admin', 'collaborator'],

@@ -13,6 +13,7 @@ class Registerorchard extends Component {
             name: '',
             location: '',
             m2: '',
+            postalCode: '',
             collaborators : false,
             consulting: false,
             description: '',
@@ -21,40 +22,33 @@ class Registerorchard extends Component {
         }
     }
 
-    //Next 6 methods fill registration required user data
-
-    fillName = (event) => {
-        this.setState({ name: event.target.value })
+          
+    //Next method fill registration orchard data
+    inputField = (e) => {
+        let prop = e.target.name
+        this.setState({[prop]: e.target.value})
     }
 
-    fillLocation = (event) => {
-        this.setState({ location: event.target.value })
-    }
 
-    fillm2 = (event) => {
-        this.setState({ m2: event.target.value })
-    }
-
-    fillCollaborators = (event) => {
+    // flip-over checkbox values on change
+    checkCollaborators = (e) => {
         let currentValue = this.state.collaborators
         this.setState({ collaborators: !currentValue })
     }
 
-    fillConsulting = (event) => {
+    checkConsulting = (e) => {
         let currentValue = this.state.consulting
         this.setState({ consulting: !currentValue })
     }
 
-    fillDescription = (event) => {
-        this.setState({ description: event.target.value })
-    }
-
+    
     //orchard registration
     submit = () => {
         api.registerOrchard(
             this.state.name,
             this.state.location,
             this.state.m2,
+            this.state.postalCode,
             this.state.collaborators,
             this.state.consulting,
             this.state.description
@@ -74,22 +68,25 @@ class Registerorchard extends Component {
         <form className="form-orchard" action="/registerorchard" method="post" onSubmit={(e) => {e.preventDefault(); this.submit()}}>
 
             <div className="form-group">
-                <input type="text" className="form-control" id="formOrchardName" placeholder="Name" onChange={this.fillName}/>
+                <input type="text" className="form-control" name='name' placeholder="Name" onChange={this.inputField}/>
             </div>
             <div className="form-group">
-                <input type="text" className="form-control" id="formOrchardLocation" placeholder="Location"  onChange={this.fillLocation}/>
+                <input type="text" className="form-control" name='location' placeholder="Location"  onChange={this.inputField}/>
             </div>
             <div className="form-group">
-                <input type="text" className="form-control" id="formOrchardM2" placeholder="M2"  onChange={this.fillm2}/>
+                <input type="text" className="form-control" name='m2' placeholder="M2"  onChange={this.inputField}/>
             </div>
-            <div className="checkbox"  onChange={this.fillCollaborators}>
+            <div className="form-group">
+                <input type="text" className="form-control" name='postalCode' placeholder="postal code"  onChange={this.inputField}/>
+            </div>
+            <div className="checkbox" name='collaborators' onChange={this.checkCollaborators}>
                 <label><input type="checkbox" value="" /> Collaborators</label>
             </div>
-            <div className="checkbox"  onChange={this.fillConsulting}>
+            <div className="checkbox" name='consulting' onChange={this.checkConsulting}>
                 <label><input type="checkbox" value="" /> Consulting</label>
             </div>
             <div className="form-group">
-                <textarea className="form-control" rows="2" id="formOrchardDescription" placeholder="Description"  onChange={this.fillDescription}></textarea>
+                <textarea className="form-control" rows="2" name='description' placeholder="Description"  onChange={this.inputField}></textarea>
             </div>
             <button type="submit" className="btn btn-success">Save</button>
         </form>

@@ -10,6 +10,7 @@ const createOrchard = require('./createOrchard')
 const updateOrchard = require('./updateOrchard')
 const deleteOrchard = require('./deleteOrchard')
 const retrieveOrchard = require('./retrieveOrchard')
+const searchOrchard = require('./searchOrchard')
 
 
 module.exports = {
@@ -23,5 +24,6 @@ module.exports = {
     createOrchard,
     updateOrchard,
     deleteOrchard,
-    retrieveOrchard
+    retrieveOrchard,
+    searchOrchard
 }
