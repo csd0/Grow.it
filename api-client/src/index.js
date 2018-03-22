@@ -44,6 +44,11 @@ const api = {
         return this._call('put', `user/${id}`, { name, surname, email, newUsername, newPassword, username, password })
     },
 
+    searchUser(searchUser) {
+        return this._call('get', `userq/${searchUser}`)
+    },
+
+
     //////////////// ORCHARDS ////////////////
     listOrchard() {
         return this._call('get', 'orchards')
@@ -61,8 +66,8 @@ const api = {
         return this._call('delete', `orchard/${id}`)
     },
 
-    update( id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription ) {
-        return this._call( 'put', `orchard/${id}`, { id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription })
+    updateOrchard( id, newName, newLocation, newM2, newPostalCode, newAdmitsCollaborators, newAdmitsConsulting, newDescription ) {
+        return this._call( 'put', `orchard/${id}`, { id, newName, newLocation, newM2, newPostalCode, newAdmitsCollaborators, newAdmitsConsulting, newDescription })
     },
 
     searchOrchard( postalCode, keyword ) {

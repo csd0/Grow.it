@@ -56,7 +56,7 @@ class Search extends Component {
                         <div className="row align-items-center">
                             
                             <div className="col-lg-4">
-                                <input type="text" maxLength="5" className="form-search" placeholder="Postal code?" name= "postalCode" onChange={this.inputField}/>
+                                <input type="text" maxLength="5" className="form-search" placeholder="Location? Postal code?" name= "postalCode" onChange={this.inputField}/>
                             </div>
                             <div className="col-lg-4">
 

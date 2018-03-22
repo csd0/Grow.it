@@ -59,11 +59,11 @@ class Orchard extends Component {
         :
         flag = "img-fluid orchard-img2"
 
-        console.log('flag ->',flag)
         return flag
     
     }
 
+    
 
     render() {
         return (
@@ -88,6 +88,7 @@ class Orchard extends Component {
                             }
                         </div>
                         <div className="col-lg-6">
+                        <button className="btn btn-success contact-button" onClick={() =>  this.props.history.push(`/orchardadmin/${this.state.orchard._id}`)}>Admin</button>
                             {
                             this.state.users.length>0?
                                 <form method="post" action={this.mailContact()}>

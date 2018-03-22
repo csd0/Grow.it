@@ -1,0 +1,22 @@
+.fields{
+    margin-top: 8%;
+    text-align: center;
+    max-width: 50%;
+    }
+
+.list-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-group-item{
+    max-width: 30%;
+    margin-top: 5px;
+
+}    
+
+.btnCol{
+    margin-left: 5px;
+    margin-top: 5px;
+}

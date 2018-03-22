@@ -89,12 +89,14 @@ module.exports = {
         return Promise.resolve()
             .then(() => {
               
+                let regExUser = new RegExp(query, "i")
+
                 return User.find( { $or: [ 
-                    {  name:new RegExp(query, "i") }, 
-                    {  surname: new RegExp(query, "i") },
-                    {  email: new RegExp(query, "i") },
-                    {  username: new RegExp(query, "i") },
-                    {  description: new RegExp(query, "i") }
+                    {  name: regExUser}, 
+                    {  surname: regExUser },
+                    {  email: regExUser },
+                    {  username: regExUser },
+                    {  description: regExUser }
                 ] } )
                 
             })
@@ -132,10 +134,10 @@ module.exports = {
     },
 
 
-    updateOrchard ( _id, newName, newLocation, newM2, newAdmitsCollaborators, newAdmitsConsulting, newDescription ) {
+    updateOrchard ( _id, newName, newLocation, newM2,newPostalCode ,newAdmitsCollaborators, newAdmitsConsulting, newDescription ) {
         return Promise.resolve()
             .then(() => {
-                validate({ _id, newName, newLocation, newM2, newDescription })
+                validate({ _id, newName, newLocation, newM2, newPostalCode, newDescription })
 
                 return Orchard.findOne({ name: newName })
             })
@@ -147,7 +149,7 @@ module.exports = {
             .then(orchard => {
                 if (!orchard) throw Error('orchard does not exists')
 
-                return Orchard.updateOne({ _id }, { name: newName, location: newLocation, m2: newM2, admitsCollaborators: newAdmitsCollaborators, admitsConsulting: newAdmitsConsulting, descriptio: newDescription })
+                return Orchard.updateOne({ _id }, { name: newName, location: newLocation, m2: newM2, postalCode: newPostalCode, admitsCollaborators: newAdmitsCollaborators, admitsConsulting: newAdmitsConsulting, description: newDescription })
             })
     },
     
@@ -191,13 +193,17 @@ module.exports = {
 
                 return Orchard
                 .find({
-                    $or:[
-                        {name: regExKey},
-                        {description: regExKey},
-                        {'plantations.species': regExKey}
-                    ],
-                    $and:[
-                        {postalCode: regExPc}
+                    $and: [
+                        {$or: [
+                             { name: regExKey },
+                             { description: regExKey },
+                             {'plantations.species': regExKey }
+                        ]},
+                        {$or: [
+                             { postalCode: regExPc },
+                             { location: regExPc }
+                        ]}
+                        
                     ]
                 })
                 

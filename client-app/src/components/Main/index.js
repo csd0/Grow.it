@@ -8,6 +8,8 @@ import Login from '../Login'
 import Registerorchard from '../Registerorchard'
 import Search from '../Search'
 import Orchard from '../Orchard'
+import OrchardAdmin from '../OrchardAdmin'
+import AddCollaborator from '../AddCollaborator'
 import SuccessMsg from '../SuccessMsg'
 import ErrorMsg from '../ErrorMsg'
 
@@ -26,6 +28,8 @@ function Main() {
             <Route path="/orchard" component={Orchard} />
             <Route path="/register/successreg" component={SuccessMsg} />
             <Route path="/register/failreg" component={ErrorMsg} />
+            <Route path="/orchardadmin" component={OrchardAdmin} />
+            <Route path="/addcollaborator" component={AddCollaborator} />
             
         </div>
     )
