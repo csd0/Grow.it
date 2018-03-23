@@ -213,6 +213,75 @@ module.exports = {
 
                 return orchards
             })
-    }
+    },
+
+    // TO DO first validate if user already is associated...
+    addCollaborator ( orchardid, user ) {
+        return Promise.resolve()
+
+            .then(() => {
+
+                return Orchard.update({ "_id": orchardid },
+                {$push: {users: {user: user,  role: 'collaborator'}}})
+            })
+            
+    },
+
+    //TO DO first validate if user is associated??
+    deleteCollaborator ( orchardid, user ) {
+        return Promise.resolve()
+
+            .then(() => {
+
+                return Orchard.update({ "_id": orchardid },
+                {$pull: {users: {_id: user}}})
+            })
+            
+    },
+
+    // TO DO first validate if species already exists
+    addPlantation ( orchardid, species, m2, releaseDate, shared ) {
+        return Promise.resolve()
+
+        .then(() => {
+
+            return Orchard.update({ "_id": orchardid },
+            {$push: {plantations: {species: species,  m2: m2, releaseDate: releaseDate, shared: shared}}})
+        })
+    },
+
+     // TO DO validations
+    deletePlantation(orchardid, plantation){
+        return Promise.resolve()
+
+        .then(() => {
+
+            return Orchard.update({ "_id": orchardid },
+            {$pull: {plantations: {_id: plantation}}})
+        })
+    },
+
+    // TO DO validations
+    updatePlantation( orchardid, plantation, m2, releaseDate, shared ){
+        return Promise.resolve()
+
+        .then(() => {
+
+            return Orchard.update({ "_id": orchardid, "plantations._id": plantation },
+            {$set: {"plantations.$.m2": m2, "plantations.$.releaseDate": releaseDate, "plantations.$.shared": shared}})
+        })
+    },
+
+    getUsersByOrchard( orchardid ) {
+        return new Promise((resolve, reject)=> {
+            Orchard.find({  _id: orchardid }).then(orchard=>{
+                //console.log(orchard)
+                User.populate(orchard, {path: 'users.user'})
+                .then(resolve)
+            })
+            .catch(reject)
+        })
+    }  
+
 
 }

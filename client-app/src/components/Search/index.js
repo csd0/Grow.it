@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from 'users-api-client-0'
+import api from '../../api-client'
 import './styles/main.css'
 
 
@@ -84,7 +84,7 @@ class Search extends Component {
                             <div className="card-body">
                                 <p className="card-text">{orchard.location}</p>
                                 <p className="card-text">{orchard.m2} m2</p>
-                                <a href={`#/orchard/${orchard._id}`} className="btn btn-success">Go</a>
+                                <a href={`#/orchard/${orchard._id}`} className="btn btn-success">View</a>
                             </div>
                         </div>
                     )}

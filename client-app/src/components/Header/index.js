@@ -37,7 +37,7 @@ function Header() {
                                     <a className="nav-link" href="/#/registerorchard">Register orchard</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/#/orchard">Orchard</a>
+                                    <a className="nav-link" href="/#/">My orchards</a>
                                 </li>
                             </ul>
                         </div>

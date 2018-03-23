@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import api from 'users-api-client-0'
+import api from '../../api-client'
+// import api from 'users-api-client-0'
 import './styles/main.css'
 
 

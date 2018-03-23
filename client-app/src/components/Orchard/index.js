@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import api from 'users-api-client-0'
+// import Moment from 'react-moment'
+import Moment from 'react-moment';
+import api from '../../api-client'
+// import api from 'users-api-client-0'
 import './styles/main.css'
 import { tomato, lettuce, corn, carrot, potato, artichoke, beetroot, flower, garlic, ginger, green_pepper, hot_pepper, leek, onion, radish, red_pepper, soybean, aubergine } from './images'
 
@@ -13,7 +16,8 @@ class Orchard extends Component {
         this.state = {
             orchard: [],
             plantations: [],
-            users: []
+            users: [],
+            usersDetails: []
         }
     }
 
@@ -31,16 +35,23 @@ class Orchard extends Component {
                     orchard: orchard.data,
                     plantations: orchard.data.plantations,
                     users: orchard.data.users
-                }))
+                }),
+                )
             .catch(console.error)
+
+            // TO DO API.populate for users data
+
     }
 
     
     mailContact = () => {
-        // filter orchard's admin email as main contact asossiated to Contact button
-        let admin =  this.state.users.filter(user => user.rol === 'admin')
         
-        return `mailto:${admin[0].email}?subject=Grow it user contact about ${this.state.orchard.name}`
+
+        // filter orchard's admin email as main contact asossiated to Contact button
+        // let admin =  this.state.users.filter(user => user.rol === 'admin')
+        
+        // return `mailto:${admin[0].email}?subject=Grow it user contact about ${this.state.orchard.name}`
+        // return `mailto:carlos.sd00@gmail.com?subject=Grow it user contact about ${this.state.orchard.name}`
 
     }
 
@@ -76,13 +87,13 @@ class Orchard extends Component {
                             </h1>
                             {
                             this.state.orchard.admitsCollaborators?
-                            <span className="badge badge-success">Collaborators</span>
+                            <span className="badge badge-success">We accept collaborators</span>
                             :
                             undefined
                             }
                             {
                             this.state.orchard.admitsConsulting?
-                            <span className="badge badge-success">Consulting</span>
+                            <span className="badge badge-success">We accept consulting</span>
                             :
                             undefined    
                             }
@@ -92,7 +103,7 @@ class Orchard extends Component {
                             {
                             this.state.users.length>0?
                                 <form method="post" action={this.mailContact()}>
-                                <button type="submit" className="btn btn-success contact-button" >Contact</button>
+                                <button type="submit" target="_blank" className="btn btn-success contact-button" >Contact</button>
                                 </form>
                             : 
                                 undefined
@@ -107,13 +118,12 @@ class Orchard extends Component {
                             <h3>Description</h3>
                             <p>{this.state.orchard.description}</p>
 
-                            <h3>Users</h3>
+                            <h3>People</h3>
                             <table className="table">
                                 <thead>
                                     <tr>
                                         <th>Rol</th>
                                         <th>Name</th>
-                                        <th>Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -122,7 +132,6 @@ class Orchard extends Component {
                                             <tr className="table-success" key={i}>
                                                 <th scope="row">{user.rol}</th>
                                                 <td>{user.name}</td>
-                                                <td>{user.email}</td>
                                             </tr>
                                         )
                                     }
@@ -174,7 +183,8 @@ class Orchard extends Component {
                                             <tr className="table-success" key={i}>
                                                 <th scope="row">{plantation.species}</th>
                                                 <td>{plantation.m2}</td>
-                                                <td>{plantation.releaseDate}</td>
+                                                <td><Moment format="DD/MM/YYYY">{plantation.releaseDate}</Moment></td>
+                                                {/* <td>{plantation.releaseDate}</td> */}
                                                  {
                                                   plantation.shared?
                                                   <td>✅</td>

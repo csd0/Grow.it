@@ -32,7 +32,7 @@ const Plantation = new Schema({
         enum: [ 'tomato', 'lettuce', 'corn', 'carrot', 'potato', 'artichoke', 'beetroot', 'flower', 'garlic', 'ginger', 'green_pepper', 'hot_pepper', 'leek', 'onion', 'radish', 'red_pepper', 'soybean', 'aubergine'],
         required: true
     },
-    releaseDate: String,
+    releaseDate: Date,
     shared: Boolean,
     m2: {
         type: Number,
