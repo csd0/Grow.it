@@ -56,7 +56,6 @@ class OrchardAdmin extends Component {
         this.setState({ [prop]: e.target.value })
     }
 
-
     // flip-over checkbox values on change
     checkCollaborators = (e) => {
         this.setState({ collaborators: !this.state.collaborators })
@@ -66,9 +65,11 @@ class OrchardAdmin extends Component {
         this.setState({ consulting: !this.state.consulting })
     }
 
-    // updates orchard destails
 
-    submit = () => {
+    updateDetails = () => {
+
+        console.log('update details')
+
         api.updateOrchard(
             this.state.id,
             this.state.name,
@@ -79,6 +80,17 @@ class OrchardAdmin extends Component {
             this.state.consulting,
             this.state.description
         )
+        // TO DO confirm/error with sweetakerts
+        .then(res => console.log(res))
+        .catch(console.error)
+    }
+
+
+    deleteOrchard = () => {
+        api.removeOrchard(this.state.id)
+        // TO DO confirm/error with sweetakerts
+        .then(res => console.log(res))
+        .catch(console.error)
     }
 
 
@@ -87,7 +99,7 @@ class OrchardAdmin extends Component {
         return (
 
             <div>
-                <form className="form-orchard" method="post" onSubmit={(e) => { e.preventDefault(); this.submit() }}>
+                <form className="form-orchard" method="post" onSubmit={(e) => { e.preventDefault(); this.updateDetails() }}>
 
                     <div className="form-group">
                         <input type="text" className="form-control" name='name' placeholder="Name" value={this.state.name} onChange={this.inputField} />
@@ -115,9 +127,9 @@ class OrchardAdmin extends Component {
 
                 <div className="form-group">
 
-                    <button className="btn btn-success">Delete orchard</button>
+                    <button className="btn btn-success" onClick={this.deleteOrchard}>Delete orchard</button>
                     <button className="btn btn-success" onClick={() =>  this.props.history.push(`/addcollaborator/${this.state.orchard._id}`)}>Manage collaborators</button>
-                    <button className="btn btn-success">Add plantation</button>
+                    <button className="btn btn-success" onClick={() =>  this.props.history.push(`/manageplantations/${this.state.orchard._id}`)}>Manage plantations</button>
                 
                 </div>
             </div>

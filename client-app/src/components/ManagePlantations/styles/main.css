@@ -1,0 +1,22 @@
+.plantations, .form-plantCreation{
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+.form-control, .btn-success{
+    margin-top: 5px;
+    margin-left: 5px;
+    max-width: 300px;;
+}
+
+.form-plantations, .form-plantCreation{
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.form-plantCreation{
+    flex-direction: column;
+    margin-top: 25%;
+}
+    

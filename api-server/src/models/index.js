@@ -50,7 +50,7 @@ const Orchard = new Schema({
         required: true
     },
     m2: {
-        type: Number,
+        type: String,
         required: true
     },
     postalCode: {

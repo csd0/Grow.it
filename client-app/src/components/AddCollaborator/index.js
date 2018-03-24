@@ -12,7 +12,7 @@ class AddCollaborator extends Component {
         this.state = {
             orchardId: '',
             searchUser: '',
-            users: [],
+            collaborators: [],
             usersMatch: []
         }
     }
@@ -24,13 +24,27 @@ class AddCollaborator extends Component {
         let pathNameLength = (this.props.location.pathname).length
         let orchardToRetrieve = pathName.substring(17, pathNameLength)
 
-        api.retrieveOrchard(orchardToRetrieve)
-        .then(orchard =>
-            this.setState({
-                orchardId: orchardToRetrieve,
-                users: orchard.data.users
-            }))
-        .catch(console.error)
+        this.setState({
+            orchardId: orchardToRetrieve,
+        })
+
+        //collaborators data are populated and stored 
+        this.refreshCollaborators(orchardToRetrieve)
+
+    }
+
+    refreshCollaborators = (orchardId) => {
+        api.getUsersByOrchard(orchardId)
+            .then(users => {
+                let collaborators = users.data.filter((user) => user.role === 'collaborator')
+                return collaborators
+            })
+            .then(collaborators =>
+                this.setState({
+                    collaborators: collaborators
+                }),
+        )
+            .catch(console.error)
     }
 
     //Next method fill user search data
@@ -39,23 +53,39 @@ class AddCollaborator extends Component {
         this.setState({ [prop]: e.target.value })
     }
 
-    submit = () => {
-        console.log('submit')
-    }
 
     anchorClic = () => {
         console.log('anchor click')
     }
 
+    //Search users matching input string 
     searchUser = () => {
-        api.searchUser(this.state.searchUser)
-        .then(users =>
-            this.setState({
-                usersMatch: users.data
-            }))
-        .catch(console.error)
+        if (this.state.searchUser != '')
+            api.searchUser(this.state.searchUser)
+                .then(users =>
+                    this.setState({
+                        usersMatch: users.data
+                    }))
+                .catch(console.error)
     }
 
+    delete = (user) => {
+        api.deleteCollaborator(this.state.orchardId, user)
+            .then(() => {
+                return this.refreshCollaborators(this.state.orchardId)
+            })
+            .catch(console.error)
+
+    }
+
+    add = (user) => {
+        api.addCollaborator(this.state.orchardId, user)
+            .then(() => {
+                return this.refreshCollaborators(this.state.orchardId)
+            })
+            .catch(console.error)
+
+    }
 
 
 
@@ -64,43 +94,57 @@ class AddCollaborator extends Component {
         return (
             <div>
                 <div className="fields">
-                <table className="table">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.collaborators.map((user, i) =>
+                                    <tr className="table-success" key={user._id}>
+                                        <th scope="row">{user.user.name}</th>
+                                        <td>{user.user.email}</td>
+                                        <td><a onClick={() => this.delete(user.user._id)}>❌</a></td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                    <form method="post" onSubmit={(e) => { e.preventDefault(); this.searchUser() }}>
+                        <input className="inputCol" type='text' name='searchUser' value={this.state.searchUser} onChange={this.inputField} />
+                        <button className="btn btn-success btnCol" type='submit'>Search user</button>
+                    </form>
+
+                    {
+                        this.state.usersMatch.length > 0 ?
+                            <table className="table">
                                 <thead>
                                     <tr>
-                                        <th>Rol</th>
                                         <th>Name</th>
-                                        <th>Email</th>
+                                        <th>Surname</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        this.state.users.map((user, i) =>
-                                            <tr className="table-success" key={i}>
-                                                <th scope="row">{user.rol}</th>
-                                                <td>{user.name}</td>
-                                                <td>{user.email}</td>
+                                        this.state.usersMatch.map((user, i) =>
+                                            <tr className="table-success" key={user._id}>
+                                                <th scope="row">{user.name}</th>
+                                                <td>{user.surname}</td>
+                                                <td><a onClick={() => this.add(user._id)}>➕</a></td>
                                             </tr>
                                         )
                                     }
                                 </tbody>
                             </table>
-                    <form method="post" onSubmit={(e) => { e.preventDefault(); this.submit() }}>
-                        <input className="inputCol" type='text' name='searchUser' value={this.state.searchUser} onChange={this.inputField} />
-                        <button className="btn btn-success btnCol" type='submit' onClick={() => this.searchUser()} >Search user</button>
-                    </form>
-                    <div className="list-group">
-                        {
-                        this.state.usersMatch.length>0?
-                        this.state.usersMatch.map((user, i)  =>                                     
-                        <a className="list-group-item list-group-item-action list-group-item-success" onClick={()=> this.anchorClic()}>{user.email}</a>)
-                        :
-                        undefined
-                        }   
-                        <button className="btn btn-success btnCol" >Add collaborator</button>   
-                        <button className="btn btn-success btnCol" >Delete Collaborator</button>               
-                    </div>
+                            :
+                            undefined
+                    }
+
                 </div>
-                
+
             </div>
 
         )
