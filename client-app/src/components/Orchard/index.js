@@ -16,8 +16,7 @@ class Orchard extends Component {
         this.state = {
             orchard: [],
             plantations: [],
-            users: [],
-            usersDetails: []
+            users: []
         }
     }
 
@@ -34,47 +33,58 @@ class Orchard extends Component {
                 this.setState({
                     orchard: orchard.data,
                     plantations: orchard.data.plantations,
-                    users: orchard.data.users
                 }),
-                )
+        )
             .catch(console.error)
 
-            // TO DO API.populate for users data
+        //users data are populated and stored 
+        api.getUsersByOrchard(orchardToRetrieve)
+            // .then (users => console.log(users))
+            .then(users =>
+                this.setState({
+                    users: users.data
+                }),
+        )
+            .catch(console.error)
 
     }
 
-    
+
+    // filter orchard's admin email as main contact asossiated to Contact button
     mailContact = () => {
-        
+        let admin = this.state.users.filter(user => user.role === 'admin')
 
-        // filter orchard's admin email as main contact asossiated to Contact button
-        // let admin =  this.state.users.filter(user => user.rol === 'admin')
-        
-        // return `mailto:${admin[0].email}?subject=Grow it user contact about ${this.state.orchard.name}`
-        // return `mailto:carlos.sd00@gmail.com?subject=Grow it user contact about ${this.state.orchard.name}`
+        return `mailto:${admin[0].user.email}?subject=Grow it general user contact about ${this.state.orchard.name}`
 
+    }
+
+    // filter orchard's user email as consulting contact associated in the list in case
+    mailUser = (id) => {
+        let collaborator = this.state.users.filter(user => user.user._id === id)
+
+        return `mailto:${collaborator[0].user.email}?subject=Grow it consulting user contact about ${this.state.orchard.name}`
     }
 
     // activates opacity in vegetables images in case the plantation is in the list
     activateOpacity = (str) => {
-        
-        let flag 
+
+        let flag
         let species = []
 
-        for (let i = 0; i<this.state.plantations.length; i++){
-           species.push(this.state.plantations[i].species)
+        for (let i = 0; i < this.state.plantations.length; i++) {
+            species.push(this.state.plantations[i].species)
         }
-        
+
         species.indexOf(str) === -1 ?
-        flag = "img-fluid orchard-img"
-        :
-        flag = "img-fluid orchard-img2"
+            flag = "img-fluid orchard-img"
+            :
+            flag = "img-fluid orchard-img2"
 
         return flag
-    
+
     }
 
-    
+
 
     render() {
         return (
@@ -86,27 +96,27 @@ class Orchard extends Component {
                                 {this.state.orchard.name}
                             </h1>
                             {
-                            this.state.orchard.admitsCollaborators?
-                            <span className="badge badge-success">We accept collaborators</span>
-                            :
-                            undefined
+                                this.state.orchard.admitsCollaborators ?
+                                    <span className="badge badge-success">We accept collaborators</span>
+                                    :
+                                    undefined
                             }
                             {
-                            this.state.orchard.admitsConsulting?
-                            <span className="badge badge-success">We accept consulting</span>
-                            :
-                            undefined    
+                                this.state.orchard.admitsConsulting ?
+                                    <span className="badge badge-success">We accept consulting</span>
+                                    :
+                                    undefined
                             }
                         </div>
                         <div className="col-lg-6">
-                        <button className="btn btn-success contact-button" onClick={() =>  this.props.history.push(`/orchardadmin/${this.state.orchard._id}`)}>Admin</button>
+                            <button className="btn btn-success contact-button" onClick={() => this.props.history.push(`/orchardadmin/${this.state.orchard._id}`)}>Admin</button>
                             {
-                            this.state.users.length>0?
-                                <form method="post" action={this.mailContact()}>
-                                <button type="submit" target="_blank" className="btn btn-success contact-button" >Contact</button>
-                                </form>
-                            : 
-                                undefined
+                                this.state.users.length > 0 ?
+                                    <form method="post" action={this.mailContact()}>
+                                        <button className="btn btn-success" type="submit" target="_blank">Contact</button>
+                                    </form>
+                                    :
+                                    undefined
                             }
                         </div>
                     </div>
@@ -128,12 +138,25 @@ class Orchard extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        this.state.users.map((user, i) =>
-                                            <tr className="table-success" key={i}>
-                                                <th scope="row">{user.rol}</th>
-                                                <td>{user.name}</td>
-                                            </tr>
-                                        )
+                                        this.state.users.length > 0 ?
+                                            (this.state.users.map((user, i) =>
+                                                <tr className="table-success" key={i}>
+                                                    <th scope="row">{user.role}</th>
+                                                    <td>{user.user.name}</td>
+                                                    {
+                                                        this.state.orchard.admitsConsulting ?
+                                                            <td>
+                                                                <form method="post" action={this.mailUser(user.user._id)}>
+                                                                    <button className="btn btn-success" type="submit" target="_blank">❔</button>
+                                                                </form>
+                                                            </td>
+                                                            :
+                                                            undefined
+                                                    }
+                                                </tr>
+                                            ))
+                                            :
+                                            undefined
                                     }
                                 </tbody>
                             </table>
@@ -142,31 +165,31 @@ class Orchard extends Component {
                         <div className="col-lg-6">
 
                             <h3>Plantations</h3>
-                            {                            
-                            this.state.plantations.length>0?                                    
-                            <div className="orchardGround">
-                                <img src={tomato} className={this.activateOpacity('tomato')} alt="tomato" />
-                                <img src={lettuce} className={this.activateOpacity('lettuce')} alt="lettuce" />
-                                <img src={corn} className={this.activateOpacity('corn')} alt="corn" />
-                                <img src={carrot} className={this.activateOpacity('carrot')} alt="carrot" />
-                                <img src={potato} className={this.activateOpacity('potato')} alt="potato" />
-                                <img src={aubergine} className={this.activateOpacity('aubergine')} alt="aubergine" />
-                                <img src={artichoke} className={this.activateOpacity('artichoke')} alt="artichoke" />
-                                <img src={beetroot} className={this.activateOpacity('beetroot')} alt="beetroot" />
-                                <img src={flower} className={this.activateOpacity('flower')} alt="flower" />
-                                <img src={garlic} className={this.activateOpacity('garlic')} alt="garlic" />
-                                <img src={ginger} className={this.activateOpacity('ginger')} alt="ginger" />
-                                <img src={green_pepper} className={this.activateOpacity('green_pepper')} alt="green_pepper" />
-                                <img src={hot_pepper} className={this.activateOpacity('hot_pepper')} alt="hot_pepper" />
-                                <img src={leek} className={this.activateOpacity('leek')} alt="leek" />
-                                <img src={onion} className={this.activateOpacity('onion')} alt="onion" />
-                                <img src={radish} className={this.activateOpacity('radish')} alt="radish" />
-                                <img src={red_pepper} className={this.activateOpacity('red_pepper')} alt="red_pepper" />
-                                <img src={soybean} className={this.activateOpacity('soybean')} alt="soybean" />
+                            {
+                                this.state.plantations.length > 0 ?
+                                    <div className="orchardGround">
+                                        <img src={tomato} className={this.activateOpacity('tomato')} alt="tomato" />
+                                        <img src={lettuce} className={this.activateOpacity('lettuce')} alt="lettuce" />
+                                        <img src={corn} className={this.activateOpacity('corn')} alt="corn" />
+                                        <img src={carrot} className={this.activateOpacity('carrot')} alt="carrot" />
+                                        <img src={potato} className={this.activateOpacity('potato')} alt="potato" />
+                                        <img src={aubergine} className={this.activateOpacity('aubergine')} alt="aubergine" />
+                                        <img src={artichoke} className={this.activateOpacity('artichoke')} alt="artichoke" />
+                                        <img src={beetroot} className={this.activateOpacity('beetroot')} alt="beetroot" />
+                                        <img src={flower} className={this.activateOpacity('flower')} alt="flower" />
+                                        <img src={garlic} className={this.activateOpacity('garlic')} alt="garlic" />
+                                        <img src={ginger} className={this.activateOpacity('ginger')} alt="ginger" />
+                                        <img src={green_pepper} className={this.activateOpacity('green_pepper')} alt="green_pepper" />
+                                        <img src={hot_pepper} className={this.activateOpacity('hot_pepper')} alt="hot_pepper" />
+                                        <img src={leek} className={this.activateOpacity('leek')} alt="leek" />
+                                        <img src={onion} className={this.activateOpacity('onion')} alt="onion" />
+                                        <img src={radish} className={this.activateOpacity('radish')} alt="radish" />
+                                        <img src={red_pepper} className={this.activateOpacity('red_pepper')} alt="red_pepper" />
+                                        <img src={soybean} className={this.activateOpacity('soybean')} alt="soybean" />
 
-                            </div>
-                            :
-                            undefined
+                                    </div>
+                                    :
+                                    undefined
                             }
                             <table className="table">
                                 <thead>
@@ -185,12 +208,12 @@ class Orchard extends Component {
                                                 <td>{plantation.m2}</td>
                                                 <td><Moment format="DD/MM/YYYY">{plantation.releaseDate}</Moment></td>
                                                 {/* <td>{plantation.releaseDate}</td> */}
-                                                 {
-                                                  plantation.shared?
-                                                  <td>✅</td>
-                                                  :
-                                                  <td>❌</td>                                     
-                                                }   
+                                                {
+                                                    plantation.shared ?
+                                                        <td>✅</td>
+                                                        :
+                                                        <td>⛔</td>
+                                                }
                                             </tr>
                                         )
                                     }

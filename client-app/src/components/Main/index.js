@@ -10,6 +10,7 @@ import Search from '../Search'
 import Orchard from '../Orchard'
 import OrchardAdmin from '../OrchardAdmin'
 import AddCollaborator from '../AddCollaborator'
+import ManagePlantations from '../ManagePlantations'
 import SuccessMsg from '../SuccessMsg'
 import ErrorMsg from '../ErrorMsg'
 
@@ -30,6 +31,7 @@ function Main() {
             <Route path="/register/failreg" component={ErrorMsg} />
             <Route path="/orchardadmin" component={OrchardAdmin} />
             <Route path="/addcollaborator" component={AddCollaborator} />
+            <Route path="/manageplantations" component={ManagePlantations} />
             
         </div>
     )

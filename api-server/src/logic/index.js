@@ -142,11 +142,6 @@ module.exports = {
                 return Orchard.findOne({ name: newName })
             })
             .then(orchard => {
-                if (orchard) throw Error( 'orchard already exists' )
-
-                return Orchard.findOne({ _id: _id })
-            })
-            .then(orchard => {
                 if (!orchard) throw Error('orchard does not exists')
 
                 return Orchard.updateOne({ _id }, { name: newName, location: newLocation, m2: newM2, postalCode: newPostalCode, admitsCollaborators: newAdmitsCollaborators, admitsConsulting: newAdmitsConsulting, description: newDescription })
@@ -234,7 +229,7 @@ module.exports = {
             .then(() => {
 
                 return Orchard.update({ "_id": orchardid },
-                {$pull: {users: {_id: user}}})
+                {$pull: {users: {user: user}}})
             })
             
     },
