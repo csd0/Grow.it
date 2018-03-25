@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import api from '../../api-client'
 import Moment from 'react-moment';
 import './styles/main.css'
+import swal from 'sweetalert2'
 
 
 class ManagePlantations extends Component {
@@ -20,7 +21,7 @@ class ManagePlantations extends Component {
             newPlantationSpecies: '',
             newPlantationM2: '',
             newPlantationReleaseDate: '',
-            newPlantationShared: ''
+            newPlantationShared: false
 
 
         }
@@ -60,14 +61,48 @@ class ManagePlantations extends Component {
     }
 
 
-    delete = (id) => {
-        api.deletePlantation(this.state.orchardId, id)
-            .then(() => {
-                this.refreshPlantations(this.state.orchardId)
-            })
-            .catch(console.error)
 
+    delete = (id) => {
+
+        (swal({
+            title: 'Are you sure?',
+            text: "This action remove plantation from your orchard!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+            .then((result) => {
+                if (result.value) {
+                    api.deletePlantation(this.state.orchardId, id)
+                        .then(res => {
+                            res.status === 'OK' ?
+                                swal(
+                                    'Deleted!',
+                                    'Plantation has been removed.',
+                                    'success'
+                                )
+                                :
+                                (swal({
+                                    type: 'error',
+                                    title: res.error,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }))
+
+                        })
+
+                
+                        .then(() => {
+                            this.refreshPlantations(this.state.orchardId)
+                        })
+                    }})
+        )
+    
     }
+
+
 
     // load details of selected plantation
     detail = (id) => {
@@ -90,26 +125,61 @@ class ManagePlantations extends Component {
             this.state.selectedPlantationReleaseDate,
             this.state.selectedPlantationShared
         )
-        .then(() => {
-            this.refreshPlantations(this.state.orchardId)
-        })
-        .catch(console.error)
+            .then(() => {
+                this.refreshPlantations(this.state.orchardId)
+            })
+            .catch(console.error)
     }
 
+    
     add = () => {
         api.addPlantation(
-            // orchardid, species, m2, releaseDate, shared
             this.state.orchardId,
             this.state.newPlantationSpecies,
             this.state.newPlantationM2,
             this.state.newPlantationReleaseDate,
             this.state.newPlantationShared
-        ).then((res) => {
-            console.log(res)
-            this.refreshPlantations(this.state.orchardId)
+        )
+        .then(res => {
+            res.status === 'OK' ?
+
+                (swal({
+                    type: 'success',
+                    title: 'plantation added',
+                    showConfirmButton: false,
+                    timer: 1500
+                }))
+                :
+                (swal({
+                    type: 'error',
+                    title: res.error,
+                    showConfirmButton: false,
+                    timer: 1500
+                }))
         })
-        .catch(console.error)
+
+        .then(() => {
+            return this.refreshPlantations(this.state.orchardId)
+        })
     }
+
+
+    // provide correct format to update correctly release date
+    formatDate = () => {
+        let formatedDate = (this.state.selectedPlantationReleaseDate).substring(0, 10)
+        return formatedDate
+    }
+
+
+    checkSelectedPlantationShared = (e) => {
+        this.setState({ selectedPlantationShared: !this.state.selectedPlantationShared })
+    }
+
+    checkNewPlantationShared = (e) => {
+        this.setState({ newPlantationShared: !this.state.newPlantationShared })
+    }
+
+
 
 
     render() {
@@ -135,7 +205,7 @@ class ManagePlantations extends Component {
                                         <tr className="table-success" key={i}>
                                             <th scope="row">{plantation.species}</th>
                                             <td>{plantation.m2}</td>
-                                            <td><Moment format="DD/MM/YYYY">{plantation.releaseDate}</Moment></td>
+                                            <td><Moment format="YYYY-MM-DD">{plantation.releaseDate}</Moment></td>
                                             {
                                                 plantation.shared ?
                                                     <td>✅</td>
@@ -153,31 +223,48 @@ class ManagePlantations extends Component {
                         {/* Form to load selected plantation, (i) button */}
                         <form className="form-plantations" method="post" onSubmit={(e) => { e.preventDefault(); this.update() }}>
                             <input readOnly type="text" className="form-control" name='selectedPlantationSpecies' value={this.state.selectedPlantationSpecies} placeholder="Species" onChange={this.inputField} />
-                            <input type="text" className="form-control" value={this.state.selectedPlantationM2} name='selectedPlantationM2' placeholder="m2" onChange={this.inputField} />
-                            <input type="text" className="form-control" value={this.state.selectedPlantationReleaseDate} name='selectedPlantationReleaseDate' placeholder="Release date" onChange={this.inputField} />
-                            <input type="text" className="form-control" value={this.state.selectedPlantationShared} name='selectedPlantationShared' placeholder="Shared" onChange={this.inputField} />
+                            <input type="number" className="form-control" value={this.state.selectedPlantationM2} name='selectedPlantationM2' placeholder="m2" onChange={this.inputField} />
+                            <input type="text" className="form-control" value={this.formatDate()} name='selectedPlantationReleaseDate' placeholder="Release date" onChange={this.inputField} />
+                            <div className="checkbox" name='selectedPlantationShared' value={this.state.selectedPlantationShared} onChange={this.checkSelectedPlantationShared}>
+                                <label><input type="checkbox" checked={this.state.selectedPlantationShared} /> Shared</label>
+                            </div>
                             <button type="submit" className="btn btn-success">Update</button>
                         </form>
                     </div>
-                    
+
                     {/* Form to create a new plantation in target orchard */}
 
                     <div className="col-lg-6">
-                    <form className="form-plantCreation" method="post" onSubmit={(e) => { e.preventDefault(); this.add() }}>
-                            <input type="text" className="form-control" name='newPlantationSpecies' value={this.state.newPlantationSpecies} placeholder="Species" onChange={this.inputField} />
-                            <input type="text" className="form-control" value={this.state.newPlantationM2} name='newPlantationM2' placeholder="m2" onChange={this.inputField} />
-                            <input type="text" className="form-control" value={this.state.newPlantationReleaseDate} name='newPlantationReleaseDate' placeholder="Release date" onChange={this.inputField} />
-                            <input type="text" className="form-control" value={this.state.newPlantationShared} name='newPlantationShared' placeholder="Shared" onChange={this.inputField} />
+                        <form className="form-plantCreation" method="post" onSubmit={(e) => { e.preventDefault(); this.add() }}>
+                            <input type="text" className="form-control" name='newPlantationSpecies' value={this.state.newPlantationSpecies} placeholder="Species (hover for featured species)" onChange={this.inputField} data-toggle="tooltip" data-placement="right" title="tomato, 
+lettuce, 
+corn, 
+carrot, 
+potato, 
+artichoke, 
+beetroot, 
+flower, 
+garlic, 
+ginger, 
+green_pepper, 
+hot_pepper, 
+leek, 
+onion, 
+radish, 
+red_pepper, 
+soybean, 
+aubergine"/>
+                            <input type="number" className="form-control" value={this.state.newPlantationM2} name='newPlantationM2' placeholder="m2" onChange={this.inputField} />
+                            <input type="text" className="form-control" value={this.state.newPlantationReleaseDate} name='newPlantationReleaseDate' placeholder="Release date YYYY-MM-DD" onChange={this.inputField} />
+                            <div className="checkbox" name='newPlantationShared' value={this.state.newPlantationShared} onChange={this.checkNewPlantationShared}>
+                                <label><input type="checkbox" checked={this.state.newPlantationShared} /> Shared</label>
+                            </div>
                             <button type="submit" className="btn btn-success">Add</button>
-                        </form>                          
+                        </form>
                     </div>
 
 
                 </div>
-
-
-
-
 
 
             </div>

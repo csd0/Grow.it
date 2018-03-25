@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-// import Moment from 'react-moment'
 import Moment from 'react-moment';
 import api from '../../api-client'
-// import api from 'users-api-client-0'
 import './styles/main.css'
 import { tomato, lettuce, corn, carrot, potato, artichoke, beetroot, flower, garlic, ginger, green_pepper, hot_pepper, leek, onion, radish, red_pepper, soybean, aubergine } from './images'
 
@@ -206,7 +204,7 @@ class Orchard extends Component {
                                             <tr className="table-success" key={i}>
                                                 <th scope="row">{plantation.species}</th>
                                                 <td>{plantation.m2}</td>
-                                                <td><Moment format="DD/MM/YYYY">{plantation.releaseDate}</Moment></td>
+                                                <td><Moment format="YYYY-MM-DD">{plantation.releaseDate}</Moment></td>
                                                 {/* <td>{plantation.releaseDate}</td> */}
                                                 {
                                                     plantation.shared ?

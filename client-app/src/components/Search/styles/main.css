@@ -1,17 +1,11 @@
 .searchBar{
-    margin-top: 10%;
-    text-align: center;
+    margin-top: 18%;
 }
 
-.dropdown{
-    margin-top: 4%;
-}
-
-.searchDropdown, .btn-search, .form-search{
+.btn-search, .form-search{
     width: 250px;
-    height: 30px;
-    margin-top: 5px;
     text-align: center;
+    align-items: center;
 }
 
 .results, .cardResult{

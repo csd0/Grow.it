@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import api from '../../api-client'
-// import api from 'users-api-client-0'
 import './styles/main.css'
+import swal from 'sweetalert2'
 
-
-class AddCollaborator extends Component {
+class ManageCollaborators extends Component {
 
     constructor() {
         super()
@@ -22,7 +21,8 @@ class AddCollaborator extends Component {
         //orchard ID is stored from url path in order to point to specific document
         let pathName = this.props.location.pathname
         let pathNameLength = (this.props.location.pathname).length
-        let orchardToRetrieve = pathName.substring(17, pathNameLength)
+        let orchardToRetrieve = pathName.substring(21, pathNameLength)
+        console.log(orchardToRetrieve)
 
         this.setState({
             orchardId: orchardToRetrieve,
@@ -47,16 +47,13 @@ class AddCollaborator extends Component {
             .catch(console.error)
     }
 
+
     //Next method fill user search data
     inputField = (e) => {
         let prop = e.target.name
         this.setState({ [prop]: e.target.value })
     }
 
-
-    anchorClic = () => {
-        console.log('anchor click')
-    }
 
     //Search users matching input string 
     searchUser = () => {
@@ -69,21 +66,74 @@ class AddCollaborator extends Component {
                 .catch(console.error)
     }
 
+
     delete = (user) => {
-        api.deleteCollaborator(this.state.orchardId, user)
-            .then(() => {
-                return this.refreshCollaborators(this.state.orchardId)
+
+
+        (swal({
+            title: 'Are you sure?',
+            text: "This action remove collaborator from your orchard!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+            .then((result) => {
+                if (result.value) {
+                    api.deleteCollaborator(this.state.orchardId, user)
+                        .then(res => {
+                            res.status === 'OK' ?
+                                swal(
+                                    'Deleted!',
+                                    'Collaborator has been removed.',
+                                    'success'
+                                )
+                                :
+                                (swal({
+                                    type: 'error',
+                                    title: res.error,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }))
+
+                        })
+                        .then(() => {
+                            return this.refreshCollaborators(this.state.orchardId)
+                        })
+
+                }
             })
-            .catch(console.error)
+        )
 
     }
 
+
+
     add = (user) => {
         api.addCollaborator(this.state.orchardId, user)
+
+            .then(res => {
+                res.status === 'OK' ?
+
+                    (swal({
+                        type: 'success',
+                        title: 'user is now a collaborator',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }))
+                    :
+                    (swal({
+                        type: 'error',
+                        title: res.error,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }))
+            })
+
             .then(() => {
                 return this.refreshCollaborators(this.state.orchardId)
             })
-            .catch(console.error)
 
     }
 
@@ -120,7 +170,7 @@ class AddCollaborator extends Component {
 
                     {
                         this.state.usersMatch.length > 0 ?
-                            <table className="table">
+                            <table className="table add-users">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -151,4 +201,4 @@ class AddCollaborator extends Component {
     }
 }
 
-export default AddCollaborator
+export default ManageCollaborators

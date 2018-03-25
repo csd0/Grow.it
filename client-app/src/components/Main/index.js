@@ -9,10 +9,9 @@ import Registerorchard from '../Registerorchard'
 import Search from '../Search'
 import Orchard from '../Orchard'
 import OrchardAdmin from '../OrchardAdmin'
-import AddCollaborator from '../AddCollaborator'
+import ManageCollaborators from '../ManageCollaborators'
 import ManagePlantations from '../ManagePlantations'
-import SuccessMsg from '../SuccessMsg'
-import ErrorMsg from '../ErrorMsg'
+
 
 
 function Main() {
@@ -27,10 +26,8 @@ function Main() {
             <Route path="/search" component={Search} />
             <Route path="/registerorchard" component={Registerorchard} />
             <Route path="/orchard" component={Orchard} />
-            <Route path="/register/successreg" component={SuccessMsg} />
-            <Route path="/register/failreg" component={ErrorMsg} />
             <Route path="/orchardadmin" component={OrchardAdmin} />
-            <Route path="/addcollaborator" component={AddCollaborator} />
+            <Route path="/managecollaborators" component={ManageCollaborators} />
             <Route path="/manageplantations" component={ManagePlantations} />
             
         </div>

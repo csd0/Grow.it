@@ -15,7 +15,7 @@ function Header() {
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
-                        <a className="navbar-brand" href="/#/login">Log in</a>
+                        {/* <a className="navbar-brand" href="/#/login">Log in</a> */}
                         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                             <ul className="navbar-nav">
                                 <li className="nav-item active">
@@ -36,9 +36,9 @@ function Header() {
                                 <li className="nav-item">
                                     <a className="nav-link" href="/#/registerorchard">Register orchard</a>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link" href="/#/">My orchards</a>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </nav>

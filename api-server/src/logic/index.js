@@ -210,11 +210,28 @@ module.exports = {
             })
     },
 
-    // TO DO first validate if user already is associated...
-    addCollaborator ( orchardid, user ) {
+
+     
+     addCollaborator ( orchardid, user ) {
         return Promise.resolve()
 
             .then(() => {
+                return Orchard.findOne({ "_id" : orchardid })
+            })
+
+            .then(orchard => {
+                
+                let flag = false
+                for (i in orchard.users){
+                    if(orchard.users[i].user == user)
+                    {
+                    flag = true}
+                }
+                return flag
+            })
+
+            .then((flag) => {
+                if (flag) throw Error('User is already a collaborator')
 
                 return Orchard.update({ "_id": orchardid },
                 {$push: {users: {user: user,  role: 'collaborator'}}})
@@ -222,7 +239,8 @@ module.exports = {
             
     },
 
-    //TO DO first validate if user is associated??
+
+    
     deleteCollaborator ( orchardid, user ) {
         return Promise.resolve()
 
@@ -234,18 +252,43 @@ module.exports = {
             
     },
 
-    // TO DO first validate if species already exists
+    // addPlantation ( orchardid, species, m2, releaseDate, shared ) {
+    //     return Promise.resolve()
+
+    //     .then(() => {
+
+    //         return Orchard.update({ "_id": orchardid },
+    //         {$push: {plantations: {species: species,  m2: m2, releaseDate: releaseDate, shared: shared}}})
+    //     })
+    // },
+
     addPlantation ( orchardid, species, m2, releaseDate, shared ) {
         return Promise.resolve()
 
         .then(() => {
+            return Orchard.findOne({ "_id" : orchardid })
+        })
+
+        .then(orchard => {
+            
+            let flag = false
+            for (i in orchard.plantations){
+                if(orchard.plantations[i].species == species)
+                {console.log(orchard.plantations[i].species)
+                flag = true}
+            }
+            return flag
+        })
+
+        .then((flag) => {
+            if (flag) throw Error('Plantation already exists')
 
             return Orchard.update({ "_id": orchardid },
             {$push: {plantations: {species: species,  m2: m2, releaseDate: releaseDate, shared: shared}}})
         })
     },
 
-     // TO DO validations
+
     deletePlantation(orchardid, plantation){
         return Promise.resolve()
 
@@ -256,7 +299,6 @@ module.exports = {
         })
     },
 
-    // TO DO validations
     updatePlantation( orchardid, plantation, m2, releaseDate, shared ){
         return Promise.resolve()
 
@@ -270,7 +312,6 @@ module.exports = {
     getUsersByOrchard( orchardid ) {
         return new Promise((resolve, reject)=> {
             Orchard.find({  _id: orchardid }).then(orchard=>{
-                //console.log(orchard)
                 User.populate(orchard, {path: 'users.user'})
                 .then(resolve)
             })

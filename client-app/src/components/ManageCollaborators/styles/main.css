@@ -1,0 +1,27 @@
+.fields {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 12%;
+    text-align: center;
+    }
+
+
+.btnCol, .inputCol{
+    display: inline;
+    max-width: 150px;
+    text-align: center;
+}
+
+.inputCol{
+    height: 24px;
+}
+
+.add-users{
+    margin-top: 10px;
+}
+
+.table td, .table th{
+    border-top: 0;
+}

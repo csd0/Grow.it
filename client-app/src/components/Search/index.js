@@ -9,19 +9,12 @@ class Search extends Component {
         super()
 
         this.state = {
-            orchards: [],
             postalCode: '',
             keyword: '',
             searchResults: []
         }
     }
 
-
-    componentDidMount() {
-        api.listOrchard()
-            .then(orchards => this.setState({ orchards: orchards.data }))
-            .catch(console.error)
-    }
 
     
     // Next method fill registration user data
@@ -56,7 +49,7 @@ class Search extends Component {
                         <div className="row align-items-center">
                             
                             <div className="col-lg-4">
-                                <input type="text" maxLength="5" className="form-search" placeholder="Location? Postal code?" name= "postalCode" onChange={this.inputField}/>
+                                <input type="text" className="form-search" placeholder="Location? Postal code?" name= "postalCode" onChange={this.inputField}/>
                             </div>
                             <div className="col-lg-4">
 
@@ -69,10 +62,6 @@ class Search extends Component {
                         </div>
                     </form>
                 </div>
-
-
-
-
 
 
                 <div className="results container">

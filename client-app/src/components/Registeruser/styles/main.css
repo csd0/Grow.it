@@ -1,15 +1,11 @@
-.form-group{
-    max-width: 35%;
-    margin: 0 auto;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
 .form-user{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin-top: 8%;
     text-align: center;
 }
 
 .user-img{
-    margin-top: 5%;
+    margin-top: 10%;
 }
