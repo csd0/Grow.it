@@ -1,21 +1,19 @@
-.fields {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 12%;
-    text-align: center;
+.coltable{
+    margin-top: 5%;
+    margin-left: 5%;
+    /* text-align: center; */
     }
 
+.form_searchcol{
+    margin-top: 25%;
+    text-align: center;
+}    
 
 .btnCol, .inputCol{
     display: inline;
-    max-width: 150px;
+    max-width: 100px;
     text-align: center;
-}
-
-.inputCol{
-    height: 24px;
+    padding: 1%;
 }
 
 .add-users{
@@ -24,4 +22,11 @@
 
 .table td, .table th{
     border-top: 0;
+    max-width: 50%;
+}
+
+.collaborators_title{
+    margin-top: 16%;
+    margin-left: 5%;
+    font-family: 'Pacifico';
 }

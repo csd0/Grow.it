@@ -11,6 +11,7 @@ function Aboutus() {
         <div>
             <div className="aboutUs container">
 
+                <h1 className="title">About us</h1>
 
                 <div className="row">
                     <div className="col-lg-4">
@@ -19,7 +20,7 @@ function Aboutus() {
                             <img className="card-img-top" src={connect} alt="Card promo" />
                             <div className="card-img-overlay">
                                 <h4 className="card-title">Connect</h4>
-                                <p className="card-text">with a emerging urban farmers community </p>
+                                <p className="card-text"></p>
                             </div>
                         </div>
 
@@ -30,7 +31,7 @@ function Aboutus() {
                             <img className="card-img-top" src={grow} alt="Card promo" />
                             <div className="card-img-overlay">
                                 <h4 className="card-title">Grow</h4>
-                                <p className="card-text">organic plantations on your own, with a group, whatever </p>
+                                <p className="card-text"></p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +41,7 @@ function Aboutus() {
                             <img className="card-img-top" src={share} alt="Card promo" />
                             <div className="card-img-overlay">
                                 <h4 className="card-title">Share</h4>
-                                <p className="card-text">your knowledge, experience, harvest… everything you want </p>
+                                <p className="card-text"></p>
                             </div>
                         </div>
                     </div>

@@ -133,6 +133,18 @@ class ManagePlantations extends Component {
 
     
     add = () => {
+        
+        let dateValidator
+
+        var RegExPattern = /^\d{2,4}\-\d{1,2}\-\d{1,2}$/
+        if ((this.state.newPlantationReleaseDate.match(RegExPattern)) && (this.state.newPlantationReleaseDate!='')) {
+                dateValidator = true
+        } else {
+                dateValidator = false
+        }
+      
+        if (dateValidator){
+      
         api.addPlantation(
             this.state.orchardId,
             this.state.newPlantationSpecies,
@@ -161,6 +173,15 @@ class ManagePlantations extends Component {
         .then(() => {
             return this.refreshPlantations(this.state.orchardId)
         })
+        }
+        else{
+            swal({
+                    type: 'error',
+                    title: 'Incorrect date format',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+        }
     }
 
 
@@ -185,11 +206,12 @@ class ManagePlantations extends Component {
     render() {
 
         return (
-            <div className="container-fluid">
+            <div className="container-fluid global-plantations">
                 <div className="row">
                     <div className="col-lg-6">
 
                         {/* Table of current plantations */}
+                        <h1 className="plantations_title">Plantations</h1>
                         <table className="table plantations">
                             <thead>
                                 <tr>
@@ -212,8 +234,8 @@ class ManagePlantations extends Component {
                                                     :
                                                     <td>⛔</td>
                                             }
-                                            <td><a onClick={() => this.detail(plantation._id)}>ℹ</a></td>
-                                            <td><a onClick={() => this.delete(plantation._id)}>❌</a></td>
+                                            <td><a className="action_links" onClick={() => this.detail(plantation._id)}>ℹ</a></td>
+                                            <td><a className="action_links" onClick={() => this.delete(plantation._id)}>❌</a></td>
                                         </tr>
                                     )
                                 }
@@ -222,10 +244,10 @@ class ManagePlantations extends Component {
 
                         {/* Form to load selected plantation, (i) button */}
                         <form className="form-plantations" method="post" onSubmit={(e) => { e.preventDefault(); this.update() }}>
-                            <input readOnly type="text" className="form-control" name='selectedPlantationSpecies' value={this.state.selectedPlantationSpecies} placeholder="Species" onChange={this.inputField} />
-                            <input type="number" className="form-control" value={this.state.selectedPlantationM2} name='selectedPlantationM2' placeholder="m2" onChange={this.inputField} />
-                            <input type="text" className="form-control" value={this.formatDate()} name='selectedPlantationReleaseDate' placeholder="Release date" onChange={this.inputField} />
-                            <div className="checkbox" name='selectedPlantationShared' value={this.state.selectedPlantationShared} onChange={this.checkSelectedPlantationShared}>
+                            <input autoComplete="off" readOnly type="text" className="form-control" name='selectedPlantationSpecies' value={this.state.selectedPlantationSpecies} placeholder="Species" onChange={this.inputField} />
+                            <input autoComplete="off" type="number" className="form-control" value={this.state.selectedPlantationM2} name='selectedPlantationM2' placeholder="m2" onChange={this.inputField} />
+                            <input autoComplete="off" type="text" className="form-control" value={this.formatDate()} name='selectedPlantationReleaseDate' placeholder="Release date" onChange={this.inputField} />
+                            <div className="checkbox check_plant" name='selectedPlantationShared' value={this.state.selectedPlantationShared} onChange={this.checkSelectedPlantationShared}>
                                 <label><input type="checkbox" checked={this.state.selectedPlantationShared} /> Shared</label>
                             </div>
                             <button type="submit" className="btn btn-success">Update</button>
@@ -236,7 +258,7 @@ class ManagePlantations extends Component {
 
                     <div className="col-lg-6">
                         <form className="form-plantCreation" method="post" onSubmit={(e) => { e.preventDefault(); this.add() }}>
-                            <input type="text" className="form-control" name='newPlantationSpecies' value={this.state.newPlantationSpecies} placeholder="Species (hover for featured species)" onChange={this.inputField} data-toggle="tooltip" data-placement="right" title="tomato, 
+                            <input autoComplete="off" required type="text" className="form-control" name='newPlantationSpecies' value={this.state.newPlantationSpecies} placeholder="Species (hover for featured species)" onChange={this.inputField} data-toggle="tooltip" data-placement="right" title="tomato, 
 lettuce, 
 corn, 
 carrot, 
@@ -254,9 +276,9 @@ radish,
 red_pepper, 
 soybean, 
 aubergine"/>
-                            <input type="number" className="form-control" value={this.state.newPlantationM2} name='newPlantationM2' placeholder="m2" onChange={this.inputField} />
-                            <input type="text" className="form-control" value={this.state.newPlantationReleaseDate} name='newPlantationReleaseDate' placeholder="Release date YYYY-MM-DD" onChange={this.inputField} />
-                            <div className="checkbox" name='newPlantationShared' value={this.state.newPlantationShared} onChange={this.checkNewPlantationShared}>
+                            <input autoComplete="off" required type="number" className="form-control" value={this.state.newPlantationM2} name='newPlantationM2' placeholder="m2" onChange={this.inputField} />
+                            <input maxLength="10" minLength="10" autoComplete="off" required type="text" className="form-control" value={this.state.newPlantationReleaseDate} name='newPlantationReleaseDate' placeholder="Release date YYYY-MM-DD" onChange={this.inputField} />
+                            <div className="checkbox check_plant" name='newPlantationShared' value={this.state.newPlantationShared} onChange={this.checkNewPlantationShared}>
                                 <label><input type="checkbox" checked={this.state.newPlantationShared} /> Shared</label>
                             </div>
                             <button type="submit" className="btn btn-success">Add</button>

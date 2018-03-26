@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import api from '../../api-client'
 import './styles/main.css'
 import swal from 'sweetalert2'
+import plant from './styles/img/plant.png'
 
 
 class Registerorchard extends Component {
@@ -84,21 +85,23 @@ class Registerorchard extends Component {
     render(){
     if (!this.state.toSuccess && !this.state.toFail) {
     return (
+        <div className="container">
         <form className="form-orchard" action="/registerorchard" method="post" onSubmit={(e) => {e.preventDefault(); this.submit()}}>
-
-                <input type="text" className="form-control" name='name' placeholder="Name" onChange={this.inputField}/>
-                <input type="text" className="form-control" name='location' placeholder="Location"  onChange={this.inputField}/>
-                <input type="number" className="form-control" name='m2' placeholder="M2"  onChange={this.inputField}/>
-                <input type="number" className="form-control" name='postalCode' placeholder="postal code"  onChange={this.inputField}/>
+                <img src={plant} className="img-fluid plant-img" alt="Responsive profile" />
+                <input autoComplete="off" type="text" className="form-control" name='name' placeholder="Name" onChange={this.inputField}/>
+                <input autoComplete="off" type="text" className="form-control" name='location' placeholder="Location"  onChange={this.inputField}/>
+                <input autoComplete="off" type="number" className="form-control" name='m2' placeholder="M2"  onChange={this.inputField}/>
+                <input autoComplete="off" type="number" className="form-control" name='postalCode' placeholder="postal code"  onChange={this.inputField}/>
             <div className="checkbox" name='collaborators' onChange={this.checkCollaborators}>
                 <label><input type="checkbox" value="" /> Collaborators</label>
             </div>
             <div className="checkbox" name='consulting' onChange={this.checkConsulting}>
                 <label><input type="checkbox" value="" /> Consulting</label>
             </div>
-                <textarea className="form-control" rows="2" name='description' placeholder="Description"  onChange={this.inputField}></textarea>
+                <textarea autoComplete="off" className="form-control" rows="2" name='description' placeholder="Description"  onChange={this.inputField}></textarea>
             <button type="submit" className="btn btn-success">Save</button>
         </form>
+        </div>
     )}
     
 }

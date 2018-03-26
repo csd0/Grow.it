@@ -1,6 +1,9 @@
+.globalOrchard{
+    overflow: hidden;
+}
 
 .orchard-header{
-    margin-top: 5%;
+    margin-top: 8%;
     text-align: center;
 }
 
@@ -44,4 +47,13 @@
 .orchardGround{
     padding: 5%;
     background-color: #ff070712;
+}
+
+.consultUser{
+    padding: 2%;
+    margin-top: -5px;
+}
+
+.contact-admin-btn{
+    padding: 1%;
 }

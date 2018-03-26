@@ -17,7 +17,7 @@
 
 .card{
     max-width: 40%;
-    min-width: 350px;
+    min-width: 300px;
 }
 
 .card-title{
@@ -28,4 +28,13 @@
 
 .card-text{
     font-size: 20px;
+}
+
+.card-header{
+    background-color: #519548;
+    color: #BEF202;
+}
+
+.row-search{
+    margin-left: 50px;
 }

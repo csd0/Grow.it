@@ -31,3 +31,8 @@
     text-shadow:3px 3px #B15117;
     font-family: 'Pacifico', cursive;
 }
+
+.btn-danger{
+    float:none;
+	text-align:center;
+}

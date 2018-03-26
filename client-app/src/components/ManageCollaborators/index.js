@@ -142,61 +142,66 @@ class ManageCollaborators extends Component {
     render() {
 
         return (
-            <div>
-                <div className="fields">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.collaborators.map((user, i) =>
-                                    <tr className="table-success" key={user._id}>
-                                        <th scope="row">{user.user.name}</th>
-                                        <td>{user.user.email}</td>
-                                        <td><a onClick={() => this.delete(user.user._id)}>❌</a></td>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
-                    <form method="post" onSubmit={(e) => { e.preventDefault(); this.searchUser() }}>
-                        <input className="inputCol" type='text' name='searchUser' value={this.state.searchUser} onChange={this.inputField} />
-                        <button className="btn btn-success btnCol" type='submit'>Search user</button>
-                    </form>
+            <div className="container-fluid">
+                <div className="row fields">
+                    <div className="col-lg-5">
+                    <h1 className="collaborators_title">Collaborators</h1>
+                        <table className="table coltable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.collaborators.map((user, i) =>
+                                        <tr className="table-success" key={user._id}>
+                                            <th scope="row">{user.user.name}</th>
+                                            <td>{user.user.email}</td>
+                                            <td><a onClick={() => this.delete(user.user._id)}>❌</a></td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="col-lg-1">
+                    </div>
+                    <div className="col-lg-5">
+                        <form className="form_searchcol" method="post" onSubmit={(e) => { e.preventDefault(); this.searchUser() }}>
+                            <input className="inputCol form-control" type='text' name='searchUser' value={this.state.searchUser} onChange={this.inputField} autoComplete="off"/>
+                            <button className="btn btn-success btnCol" type='submit'>Search user</button>
+                        </form>
 
-                    {
-                        this.state.usersMatch.length > 0 ?
-                            <table className="table add-users">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Surname</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        this.state.usersMatch.map((user, i) =>
-                                            <tr className="table-success" key={user._id}>
-                                                <th scope="row">{user.name}</th>
-                                                <td>{user.surname}</td>
-                                                <td><a onClick={() => this.add(user._id)}>➕</a></td>
-                                            </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </table>
-                            :
-                            undefined
-                    }
-
+                        {
+                            this.state.usersMatch.length > 0 ?
+                                <table className="table add-users">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Surname</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            this.state.usersMatch.map((user, i) =>
+                                                <tr className="table-success" key={user._id}>
+                                                    <th scope="row">{user.name}</th>
+                                                    <td>{user.surname}</td>
+                                                    <td><a onClick={() => this.add(user._id)}>➕</a></td>
+                                                </tr>
+                                            )
+                                        }
+                                    </tbody>
+                                </table>
+                                :
+                                undefined
+                        }
+                    </div>
                 </div>
 
             </div>
-
         )
     }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import api from '../../api-client'
-import man from './styles/img/man.png'
+import farmers from './styles/img/farmers.png'
 import './styles/main.css'
 import swal from 'sweetalert2'
 
@@ -73,15 +73,15 @@ class Registeruser extends Component {
 
 
         return (
-            <div>
+            <div className="container">
                 <form className="form-user" action="/register" method="post" onSubmit={(e) => { e.preventDefault(); this.submit() }}>
-                    <img src={man} className="img-fluid user-img" alt="Responsive profile" />
-                    <input type="text" className="form-control" name="name" placeholder="Name" onChange={this.inputField} />
-                    <input type="text" className="form-control" name="surname" placeholder="Surname" onChange={this.inputField} />
-                    <input type="text" className="form-control" name="email" placeholder="Email" onChange={this.inputField} />
-                    <input type="text" className="form-control" name="username" placeholder="Username" onChange={this.inputField} />
-                    <input type="password" className="form-control" name="password" placeholder="Password" onChange={this.inputField} />
-                    <textarea className="form-control" rows="3" name="description" placeholder="Description" onChange={this.inputField}></textarea>
+                    <img src={farmers} className="img-fluid user-img" alt="Responsive profile" />
+                    <input autoComplete="off" type="text" className="form-control" name="name" placeholder="Name" onChange={this.inputField} />
+                    <input autoComplete="off" type="text" className="form-control" name="surname" placeholder="Surname" onChange={this.inputField} />
+                    <input autoComplete="off" type="text" className="form-control" name="email" placeholder="Email" onChange={this.inputField} />
+                    <input autoComplete="off" type="text" className="form-control" name="username" placeholder="Username" onChange={this.inputField} />
+                    <input autoComplete="off" type="password" className="form-control" name="password" placeholder="Password" onChange={this.inputField} />
+                    <textarea autoComplete="off" className="form-control" rows="3" name="description" placeholder="Description" onChange={this.inputField}></textarea>
                     <button type="submit" className="btn btn-success">Save</button>
 
                 </form>

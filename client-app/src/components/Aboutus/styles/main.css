@@ -1,3 +1,11 @@
 .aboutUs{
     margin-top: 15%;
 }
+
+.title{
+    float: none;
+    text-align:center;
+    font-family: 'Pacifico';
+    color: #519548;
+    margin-bottom: 30px;
+}

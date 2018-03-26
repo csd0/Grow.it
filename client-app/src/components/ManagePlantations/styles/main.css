@@ -1,4 +1,4 @@
-.plantations, .form-plantCreation{
+.plantations{
     margin-top: 10%;
     margin-left: 5%;
 }
@@ -19,4 +19,20 @@
     flex-direction: column;
     margin-top: 25%;
 }
-    
+
+.global-plantations{
+    padding: 5%;
+}
+
+.action_links{
+    cursor: pointer;
+}
+
+.check_plant{
+    padding: 2%;
+}
+
+.plantations_title{
+    margin-top: 8%;
+    font-family: 'Pacifico';
+}

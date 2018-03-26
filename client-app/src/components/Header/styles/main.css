@@ -15,7 +15,11 @@ header {
     margin-left: -12px;
 }
 
-.navbar-brand, .navbar-toogler-icon, .nav-link {
+li, .navbar-brand, .navbar-toogler-icon, .nav-link, .dropdown, .dropdown-menu {
     color: #BEF202 !important;
     font-weight: bolder;
+}
+
+a {
+    float: right;
 }

@@ -211,12 +211,14 @@ module.exports = {
     },
 
 
-     
-     addCollaborator ( orchardid, user ) {
+
+    addCollaborator ( orchardid, user ) {
         return Promise.resolve()
 
             .then(() => {
+
                 return Orchard.findOne({ "_id" : orchardid })
+
             })
 
             .then(orchard => {
@@ -225,20 +227,21 @@ module.exports = {
                 for (i in orchard.users){
                     if(orchard.users[i].user == user)
                     {
-                    flag = true}
-                }
-                return flag
+                        flag = true}
+                    }
+                    if (flag) throw Error('User is already a collaborator')
+                    
+                 if (orchard.users.length === 0)
+                     return Orchard.update({ "_id": orchardid },
+                    {$push: {users: {user: user,  role: 'admin'}}})
+                else
+                     return Orchard.update({ "_id": orchardid },
+                     {$push: {users: {user: user,  role: 'collaborator'}}})
+
             })
 
-            .then((flag) => {
-                if (flag) throw Error('User is already a collaborator')
-
-                return Orchard.update({ "_id": orchardid },
-                {$push: {users: {user: user,  role: 'collaborator'}}})
-            })
             
     },
-
 
     
     deleteCollaborator ( orchardid, user ) {
@@ -252,15 +255,6 @@ module.exports = {
             
     },
 
-    // addPlantation ( orchardid, species, m2, releaseDate, shared ) {
-    //     return Promise.resolve()
-
-    //     .then(() => {
-
-    //         return Orchard.update({ "_id": orchardid },
-    //         {$push: {plantations: {species: species,  m2: m2, releaseDate: releaseDate, shared: shared}}})
-    //     })
-    // },
 
     addPlantation ( orchardid, species, m2, releaseDate, shared ) {
         return Promise.resolve()

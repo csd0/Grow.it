@@ -1,6 +1,11 @@
+.global-admin{
+    margin-top: 8%;
+    overflow: hidden;
+}
+
 .management-btn, .delete-btn, .btn-success{
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 10px;
 }

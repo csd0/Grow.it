@@ -86,7 +86,7 @@ class Orchard extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container globalOrchard">
                 <div className="container orchard-header">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
@@ -107,11 +107,11 @@ class Orchard extends Component {
                             }
                         </div>
                         <div className="col-lg-6">
-                            <button className="btn btn-success contact-button" onClick={() => this.props.history.push(`/orchardadmin/${this.state.orchard._id}`)}>Admin</button>
+                            <button className="btn btn-success contact-admin-btn" onClick={() => this.props.history.push(`/orchardadmin/${this.state.orchard._id}`)}>Admin</button>
                             {
                                 this.state.users.length > 0 ?
                                     <form method="post" action={this.mailContact()}>
-                                        <button className="btn btn-success" type="submit" target="_blank">Contact</button>
+                                        <button className="btn btn-success contact-admin-btn" type="submit" target="_blank">Contact</button>
                                     </form>
                                     :
                                     undefined
@@ -125,7 +125,6 @@ class Orchard extends Component {
                         <div className="col-lg-6">
                             <h3>Description</h3>
                             <p>{this.state.orchard.description}</p>
-
                             <h3>People</h3>
                             <table className="table">
                                 <thead>
@@ -145,7 +144,7 @@ class Orchard extends Component {
                                                         this.state.orchard.admitsConsulting ?
                                                             <td>
                                                                 <form method="post" action={this.mailUser(user.user._id)}>
-                                                                    <button className="btn btn-success" type="submit" target="_blank">❔</button>
+                                                                    <button className="btn btn-success consultUser" type="submit" target="_blank">❔</button>
                                                                 </form>
                                                             </td>
                                                             :

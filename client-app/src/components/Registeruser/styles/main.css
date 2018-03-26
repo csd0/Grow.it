@@ -1,9 +1,14 @@
+.container{
+    overflow: hidden;
+}
+
 .form-user{
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 8%;
     text-align: center;
+    
 }
 
 .user-img{
