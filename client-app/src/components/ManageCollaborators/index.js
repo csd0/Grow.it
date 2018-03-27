@@ -159,7 +159,7 @@ class ManageCollaborators extends Component {
                                         <tr className="table-success" key={user._id}>
                                             <th scope="row">{user.user.name}</th>
                                             <td>{user.user.email}</td>
-                                            <td><a onClick={() => this.delete(user.user._id)}>❌</a></td>
+                                            <td><a className="action_links" onClick={() => this.delete(user.user._id)}>❌</a></td>
                                         </tr>
                                     )
                                 }
@@ -189,7 +189,7 @@ class ManageCollaborators extends Component {
                                                 <tr className="table-success" key={user._id}>
                                                     <th scope="row">{user.name}</th>
                                                     <td>{user.surname}</td>
-                                                    <td><a onClick={() => this.add(user._id)}>➕</a></td>
+                                                    <td><a className="action_links" onClick={() => this.add(user._id)}>➕</a></td>
                                                 </tr>
                                             )
                                         }
