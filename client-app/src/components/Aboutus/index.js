@@ -8,7 +8,7 @@ import share from './styles/images/share.jpeg'
 function Aboutus() {
 
     return (
-        <div>
+        <div className="aboutUs_global">
             <div className="aboutUs container">
 
                 <h1 className="title">About us</h1>
@@ -48,7 +48,7 @@ function Aboutus() {
 
                 </div>
             </div>
-        </div>
+            </div>
     )
 
 }

@@ -1,6 +1,9 @@
+.orchard-admin{
+    overflow: hidden;
+}
+
 .global-admin{
     margin-top: 8%;
-    overflow: hidden;
 }
 
 .management-btn, .delete-btn, .btn-success{

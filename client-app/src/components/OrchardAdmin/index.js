@@ -147,31 +147,32 @@ class OrchardAdmin extends Component {
     render() {
 
         return (
+            <div className="orchard-admin">
+                <div className="container global-admin">
+                    <form className="form-orchard" method="post" onSubmit={(e) => { e.preventDefault(); this.updateDetails() }}>
 
-            <div className="container global-admin">
-                <form className="form-orchard" method="post" onSubmit={(e) => { e.preventDefault(); this.updateDetails() }}>
+                        <input type="text" className="form-control" name='name' placeholder="Name" value={this.state.name} onChange={this.inputField} />
+                        <input type="text" className="form-control" name='location' placeholder="Location" value={this.state.location} onChange={this.inputField} />
+                        <input type="number" className="form-control" name='m2' placeholder="M2" value={this.state.m2} onChange={this.inputField} />
+                        <input type="number" className="form-control" name='postalCode' placeholder="postal code" value={this.state.postalCode} onChange={this.inputField} />
+                        <div className="checkbox" name='collaborators' value={this.state.collaborators} onChange={this.checkCollaborators}>
+                            <label><input type="checkbox" checked={this.state.collaborators} /> Collaborators</label>
+                        </div>
+                        <div className="checkbox" name='consulting' value={this.state.consulting} onChange={this.checkConsulting}>
+                            <label><input type="checkbox" checked={this.state.consulting} /> Consulting</label>
+                        </div>
+                        <textarea className="form-control" rows="2" name='description' placeholder="Description" value={this.state.description} onChange={this.inputField}></textarea>
+                        <button type="submit" className="btn btn-success">Update details</button>
+                    </form>
 
-                    <input type="text" className="form-control" name='name' placeholder="Name" value={this.state.name} onChange={this.inputField} />
-                    <input type="text" className="form-control" name='location' placeholder="Location" value={this.state.location} onChange={this.inputField} />
-                    <input type="number" className="form-control" name='m2' placeholder="M2" value={this.state.m2} onChange={this.inputField} />
-                    <input type="number" className="form-control" name='postalCode' placeholder="postal code" value={this.state.postalCode} onChange={this.inputField} />
-                    <div className="checkbox" name='collaborators' value={this.state.collaborators} onChange={this.checkCollaborators}>
-                        <label><input type="checkbox" checked={this.state.collaborators} /> Collaborators</label>
-                    </div>
-                    <div className="checkbox" name='consulting' value={this.state.consulting} onChange={this.checkConsulting}>
-                        <label><input type="checkbox" checked={this.state.consulting} /> Consulting</label>
-                    </div>
-                    <textarea className="form-control" rows="2" name='description' placeholder="Description" value={this.state.description} onChange={this.inputField}></textarea>
-                    <button type="submit" className="btn btn-success">Update details</button>
-                </form>
-
-                <div className="form-group">
-                    <div className="management-btn">
-                        <button className="btn btn-success" onClick={() => this.props.history.push(`/managecollaborators/${this.state.orchard._id}`)}>Manage collaborators</button>
-                        <button className="btn btn-success" onClick={() => this.props.history.push(`/manageplantations/${this.state.orchard._id}`)}>Manage plantations</button>
-                    </div>
-                    <div className="delete-btn">
-                        <button className="btn btn-danger" onClick={this.deleteOrchard}>Delete orchard</button>
+                    <div className="form-group">
+                        <div className="management-btn">
+                            <button className="btn btn-success" onClick={() => this.props.history.push(`/managecollaborators/${this.state.orchard._id}`)}>Manage collaborators</button>
+                            <button className="btn btn-success" onClick={() => this.props.history.push(`/manageplantations/${this.state.orchard._id}`)}>Manage plantations</button>
+                        </div>
+                        <div className="delete-btn">
+                            <button className="btn btn-danger" onClick={this.deleteOrchard}>Delete orchard</button>
+                        </div>
                     </div>
                 </div>
             </div>
