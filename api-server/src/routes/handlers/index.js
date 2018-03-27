@@ -1,3 +1,4 @@
+const login = require('./login')
 const list = require('./list')
 const create = require('./create')
 const update = require('./update')
@@ -20,6 +21,7 @@ const getUsersByOrchard = require('./getUsersByOrchard')
 
 
 module.exports = {
+    login,
     list,
     create,
     update,

@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const bodyParser = require('body-parser')
-const { list, create, update, delete: _delete, retrieve, searchUser, listOrchard, createOrchard, updateOrchard, deleteOrchard, retrieveOrchard, searchOrchard,addCollaborator, deleteCollaborator, addPlantation, deletePlantation, updatePlantation, getUsersByOrchard } = require('./handlers')
+const { login, list, create, update, delete: _delete, retrieve, searchUser, listOrchard, createOrchard, updateOrchard, deleteOrchard, retrieveOrchard, searchOrchard,addCollaborator, deleteCollaborator, addPlantation, deletePlantation, updatePlantation, getUsersByOrchard } = require('./handlers')
+const jwtValidator = require('../routes/handlers/jwtValidator')
 
 const router = Router()
 const jsonBodyParser = bodyParser.json()
@@ -9,12 +10,19 @@ const jsonBodyParser = bodyParser.json()
 
 
 //////////// USERS /////////////////
+router.post('/login', jsonBodyParser, login)
 router.get('/users', list)
 router.post('/user', jsonBodyParser, create)
 router.put('/user/:_id', jsonBodyParser, update)
 router.delete('/user/:_id', jsonBodyParser, _delete)
 router.get('/user/:_id', retrieve)
 router.get('/userq/:query', searchUser)
+
+//TODO : Associate jwtValidator to routes
+// router.delete('/user/:id', [jwtValidator, jsonBodyParser], _delete)
+
+// router.get('/user/:id', jwtValidator, retrieve)
+
 
 
 //////////// ORCHARDS /////////////////
