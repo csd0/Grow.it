@@ -5,6 +5,20 @@ const uuid = require('uuid/v4')
 module.exports = {
 
     /////////// USERS ///////////////
+
+    verify(username, password) {
+        return Promise.resolve()
+            .then(() => {
+                validate({ username, password })
+
+                return User.findOne({ username, password })
+            })
+            .then(user => {
+                if (!user) throw Error('username and/or password wrong')
+
+                return user.id
+            })
+    },
     
     list() {
         return User.find({}, { _id: 0, id: 1, name: 1, surname: 1, email: 1, username: 1 })
