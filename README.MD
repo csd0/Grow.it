@@ -4,50 +4,66 @@
 
 ## Target
 
-Grow it is a collaborative urban orchards platform.
+Grow it is a collaborative urban orchards platform. Intended to connect people having space to grow with people with time to attend and possibly share harvests between  all of them.
 
 -------------------------------------------------------
 
 
-## Description
+## Functional description
 
 This application allows to connect people through a growing community of owned plantations. Once a user is registered, he can create an orchard or collaborate in another ones, look for consulting, share the harvest surplus, etc.
 
+Contacts between users are possible by mail.
+
+![Use cases](doc/images/funtional_description.png)
+
+
+### Screenshots
+
+![landing_page](doc/images/landing_page.png)
+![about_us](doc/images/about_us.png)
+![register_user](doc/images/register_user.png)
+![register_orchard](doc/images/register_orchard.png)
+![search](doc/images/search.png)
+![orchard](doc/images/orchard.png)
+![orchard_admin](doc/images/orchard_admin.png)
+![manage_collaborators](doc/images/manage_collaborators.png)
+![manage_plantations](doc/images/manage_plantations.png)
+
 -------------------------------------------------------
 
 
-## Technologies
+## Technical description
 
 * HTML5
 * CSS3
 * Javascript
-* Jasmine
 * Node
 * MongoDB
 * Mongoose
 * React
 
--------------------------------------------------------
-
-
-## Adittional information
-
-### Mock up
-
-![Mock up landing page](doc/images/mockUp_landingPage.png)
-![Mock up about us](doc/images/mockUp_aboutUs.png)
-![Register user](doc/images/mockUp_registerUser.png)
-![Log in](doc/images/mockUp_logIn.png)
-![Home](doc/images/mockUp_home.png)
-![Create/Edit orchard](doc/images/mockUp_createEditOrchard.png)
-![Orchard](doc/images/mockUp_orchard.png)
-
--------------------------------------------------------
-
+### General structure
+![general_structure](doc/images/general_structure.png)
 
 ### Data model
-
 ![Data model](doc/images/Data_model.png)
+
+#### Client app
+![components](doc/images/components.png)
+
+#### API client
+HTTP connector client using [request-promise](https://github.com/request/request-promise)
+
+#### API server
+3 layers separation:
+* Routes/handlers: I/O layer
+* Logic: implement business logic
+* Models: define Mongoose schemas
+
+API reference detailed in [API server](https://github.com/csd0/REST-API-Server)
+
+
 
 -------------------------------------------------------
 
@@ -74,4 +90,5 @@ This application allows to connect people through a growing community of owned p
 ### Links
 * Gestión de tareas en [Trello](https://trello.com/b/tXKaT7at)
 * [Repositorio](https://github.com/csd0/Grow.it) del proyecto
+* [API server](https://github.com/csd0/REST-API-Server)
 * [Surge](http://growit.surge.sh)

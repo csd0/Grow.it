@@ -246,7 +246,7 @@ class ManagePlantations extends Component {
                         <form className="form-plantations" method="post" onSubmit={(e) => { e.preventDefault(); this.update() }}>
                             <input autoComplete="off" readOnly type="text" className="form-control" name='selectedPlantationSpecies' value={this.state.selectedPlantationSpecies} placeholder="Species" onChange={this.inputField} />
                             <input autoComplete="off" type="number" className="form-control" value={this.state.selectedPlantationM2} name='selectedPlantationM2' placeholder="m2" onChange={this.inputField} />
-                            <input autoComplete="off" type="text" className="form-control" value={this.formatDate()} name='selectedPlantationReleaseDate' placeholder="Release date" onChange={this.inputField} />
+                            <input autoComplete="off" type="date" className="form-control" value={this.formatDate()} name='selectedPlantationReleaseDate' placeholder="Release date" onChange={this.inputField} />
                             <div className="checkbox check_plant" name='selectedPlantationShared' value={this.state.selectedPlantationShared} onChange={this.checkSelectedPlantationShared}>
                                 <label><input type="checkbox" checked={this.state.selectedPlantationShared} /> Shared</label>
                             </div>
@@ -277,7 +277,7 @@ red_pepper,
 soybean, 
 aubergine"/>
                             <input autoComplete="off" required type="number" className="form-control" value={this.state.newPlantationM2} name='newPlantationM2' placeholder="m2" onChange={this.inputField} />
-                            <input maxLength="10" minLength="10" autoComplete="off" required type="text" className="form-control" value={this.state.newPlantationReleaseDate} name='newPlantationReleaseDate' placeholder="Release date YYYY-MM-DD" onChange={this.inputField} />
+                            <input maxLength="10" minLength="10" autoComplete="off" required type="date" className="form-control" value={this.state.newPlantationReleaseDate} name='newPlantationReleaseDate' placeholder="Release date YYYY-MM-DD" onChange={this.inputField} />
                             <div className="checkbox check_plant" name='newPlantationShared' value={this.state.newPlantationShared} onChange={this.checkNewPlantationShared}>
                                 <label><input type="checkbox" checked={this.state.newPlantationShared} /> Shared</label>
                             </div>

@@ -10,8 +10,9 @@ const api = {
         // with (this) {
             //"this" necessary, instead... this.protocol, this.host...
             // return 'https://secure-shelf-47966.herokuapp.com/api'
-            return 'http://localhost:5000/api'
-            // return `${this.protocol}://${this.host}:${this.port}/api`
+            // return 'https://morning-inlet-10973.herokuapp.com/api'
+            // return 'http://localhost:5000/api'
+            return `${this.protocol}://${this.host}:${this.port}/api`
         // }
     },
 
