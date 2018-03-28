@@ -22,7 +22,7 @@ class ManageCollaborators extends Component {
         let pathName = this.props.location.pathname
         let pathNameLength = (this.props.location.pathname).length
         let orchardToRetrieve = pathName.substring(21, pathNameLength)
-        console.log(orchardToRetrieve)
+        
 
         this.setState({
             orchardId: orchardToRetrieve,

@@ -1,19 +1,9 @@
-require('dotenv').config()
 const rp = require('request-promise')
 
-// const protocol = process.env.protocol
-// const host = process.env.host
-// const port = process.env.port
 
 const api = {
     _baseUrl() {
-        // with (this) {
-            //"this" necessary, instead... this.protocol, this.host...
-            // return 'https://secure-shelf-47966.herokuapp.com/api'
-            // return 'https://morning-inlet-10973.herokuapp.com/api'
-            // return 'http://localhost:5000/api'
             return `${this.protocol}://${this.host}:${this.port}/api`
-        // }
     },
 
     _call(method, path, body) {

@@ -12,6 +12,7 @@ var api = {
         // with (this) {
         //"this" necessary, instead... this.protocol, this.host...
         // return 'https://secure-shelf-47966.herokuapp.com/api'
+        // return 'https://morning-inlet-10973.herokuapp.com/api'
         // return 'http://localhost:5000/api'
         return this.protocol + '://' + this.host + ':' + this.port + '/api';
         // }
@@ -65,6 +66,27 @@ var api = {
     },
     searchOrchard: function searchOrchard(postalCode, keyword) {
         return this._call('post', 'orchardq', { postalCode: postalCode, keyword: keyword });
+    },
+    addCollaborator: function addCollaborator(orchardid, user) {
+        return this._call('post', '/orchard/addcollaborator', { orchardid: orchardid, user: user });
+    },
+    deleteCollaborator: function deleteCollaborator(orchardid, user) {
+        return this._call('post', '/orchard/deletecollaborator', { orchardid: orchardid, user: user });
+    },
+    addPlantation: function addPlantation(orchardid, species, m2, releaseDate, shared) {
+        return this._call('post', '/orchard/addplantation', { orchardid: orchardid, species: species, m2: m2, releaseDate: releaseDate, shared: shared });
+    },
+    deletePlantation: function deletePlantation(orchardid, plantation) {
+        return this._call('post', '/orchard/deleteplantation', { orchardid: orchardid, plantation: plantation });
+    },
+    updatePlantation: function updatePlantation(orchardid, plantation, m2, releaseDate, shared) {
+        return this._call('post', '/orchard/updatePlantation', { orchardid: orchardid, plantation: plantation, m2: m2, releaseDate: releaseDate, shared: shared });
+    },
+    getUsersByOrchard: function getUsersByOrchard(orchardid) {
+        return this._call('get', '/orchard/populateusers/' + orchardid);
+    },
+    retrieveOrchard2: function retrieveOrchard2(id) {
+        return this._call('get', 'orchard/' + id);
     }
 };
 

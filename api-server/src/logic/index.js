@@ -282,8 +282,7 @@ module.exports = {
             let flag = false
             for (i in orchard.plantations){
                 if(orchard.plantations[i].species == species)
-                {console.log(orchard.plantations[i].species)
-                flag = true}
+                {flag = true}
             }
             return flag
         })
