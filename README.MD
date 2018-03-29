@@ -11,7 +11,7 @@ Grow it is a collaborative urban orchards platform. Intended to connect people h
 
 ## Functional description
 
-This application allows to connect people through a growing community of owned plantations. Once a user is registered, he can create an orchard or collaborate in another ones, look for consulting, share the harvest surplus, etc.
+This application allows to connect people through a growing community of owned plantations. A user can create an orchard or collaborate in another ones, look for consulting, share the harvest surplus, etc.
 
 Contacts between users are possible by mail.
 
