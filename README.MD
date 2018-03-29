@@ -1,5 +1,8 @@
 # Grow.it: grow more... buy less
 
+Detailed README in [develop](https://github.com/csd0/Grow.it/tree/develop)
+
+
 ![HTML5,CSS3 and JS](doc/images/html5-css3-js.png)          [![Bootstrap](doc/images/bootstrap.png)](http://getbootstrap.com/)          [![React](doc/images/react.png)](https://facebook.github.io/react/)          [![NodeJS](doc/images/nodejs.png)](https://nodejs.org/)          [![MongoDB](doc/images/mongodb.png)](https://www.mongodb.com/)          [![Skylab](doc/images/skylab-56.png)](http://www.skylabcoders.com/)  
 
 ## Target
