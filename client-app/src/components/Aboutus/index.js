@@ -16,7 +16,7 @@ function Aboutus() {
                 <div className="row">
                     <div className="col-lg-4">
 
-                        <div className="card img-fluid">
+                        <div className="card img-fluid responsivo">
                             <img className="card-img-top" src={connect} alt="Card promo" />
                             <div className="card-img-overlay">
                                 <h4 className="card-title">Connect</h4>
@@ -27,7 +27,7 @@ function Aboutus() {
                     </div>
 
                     <div className="col-lg-4">
-                        <div className="card img-fluid">
+                        <div className="card img-fluid responsivo">
                             <img className="card-img-top" src={grow} alt="Card promo" />
                             <div className="card-img-overlay">
                                 <h4 className="card-title">Grow</h4>
@@ -37,7 +37,7 @@ function Aboutus() {
                     </div>
 
                     <div className="col-lg-4">
-                        <div className="card img-fluid">
+                        <div className="card img-fluid  responsivo">
                             <img className="card-img-top" src={share} alt="Card promo" />
                             <div className="card-img-overlay">
                                 <h4 className="card-title">Share</h4>

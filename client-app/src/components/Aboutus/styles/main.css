@@ -13,3 +13,7 @@
     color: #519548;
     margin-bottom: 30px;
 }
+
+.responsivo{
+    max-width: 100% !important;
+}

@@ -151,7 +151,7 @@ class OrchardAdmin extends Component {
                 <div className="container global-admin">
                     <form className="form-orchard" method="post" onSubmit={(e) => { e.preventDefault(); this.updateDetails() }}>
 
-                        <input type="text" className="form-control" name='name' placeholder="Name" value={this.state.name} onChange={this.inputField} />
+                        <input type="text" className="form-control" name='name' placeholder="Name" value={this.state.name} onChange={this.inputField} readOnly/>
                         <input type="text" className="form-control" name='location' placeholder="Location" value={this.state.location} onChange={this.inputField} />
                         <input type="number" className="form-control" name='m2' placeholder="M2" value={this.state.m2} onChange={this.inputField} />
                         <input type="number" className="form-control" name='postalCode' placeholder="postal code" value={this.state.postalCode} onChange={this.inputField} />

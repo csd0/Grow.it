@@ -51,7 +51,6 @@ class Orchard extends Component {
     // filter orchard's admin email as main contact asossiated to Contact button
     mailContact = () => {
         let admin = this.state.users.filter(user => user.role === 'admin')
-
         return `mailto:${admin[0].user.email}?subject=Grow it general user contact about ${this.state.orchard.name}`
 
     }
