@@ -1,53 +1,71 @@
 # Grow.it: grow more... buy less
 
-![HTML5,CSS3 and JS](https://github.com/FransLopez/logo-images/blob/master/logos/html5-css3-js.png)          [![Bootstrap](https://github.com/FransLopez/logo-images/blob/master/logos/bootstrap.png)](http://getbootstrap.com/)          [![React](https://github.com/FransLopez/logo-images/blob/master/logos/react.png)](https://facebook.github.io/react/)          [![NodeJS](https://github.com/FransLopez/logo-images/blob/master/logos/nodejs.png)](https://nodejs.org/)          [![MongoDB](https://github.com/FransLopez/logo-images/blob/master/logos/mongodb.png)](https://www.mongodb.com/)          [![Skylab](https://github.com/FransLopez/logo-images/blob/master/logos/skylab-56.png)](http://www.skylabcoders.com/)  
+![HTML5,CSS3 and JS](doc/images/html5-css3-js.png)          [![Bootstrap](doc/images/bootstrap.png)](http://getbootstrap.com/)          [![React](doc/images/react.png)](https://facebook.github.io/react/)          [![NodeJS](doc/images/nodejs.png)](https://nodejs.org/)          [![MongoDB](doc/images/mongodb.png)](https://www.mongodb.com/)          [![Skylab](doc/images/skylab-56.png)](http://www.skylabcoders.com/)  
 
 ## Target
 
-Grow it is a collaborative urban orchards platform.
+Grow it is a collaborative urban orchards platform. Intended to connect people having space to grow with people with time to attend and possibly share harvests between  all of them.
 
 -------------------------------------------------------
 
 
-## Description
+## Functional description
 
 This application allows to connect people through a growing community of owned plantations. Once a user is registered, he can create an orchard or collaborate in another ones, look for consulting, share the harvest surplus, etc.
 
+Contacts between users are possible by mail.
+
+![Use cases](doc/images/funtional_description.png)
+
+
+### Screenshots
+
+![landing_page](doc/images/landing_page.png)
+![about_us](doc/images/about_us.png)
+![register_user](doc/images/register_user.png)
+![register_orchard](doc/images/register_orchard.png)
+![search](doc/images/search.png)
+![orchard](doc/images/orchard.png)
+![orchard_admin](doc/images/orchard_admin.png)
+![manage_collaborators](doc/images/manage_collaborators.png)
+![manage_plantations](doc/images/manage_plantations.png)
+
+[Surge](http://growit.surge.sh)
+
 -------------------------------------------------------
 
 
-## Technologies
+## Technical description
 
 * HTML5
 * CSS3
 * Javascript
-* Jasmine
 * Node
 * MongoDB
 * Mongoose
 * React
 
--------------------------------------------------------
-
-
-## Adittional information
-
-### Mock up
-
-![Mock up landing page](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_landingPage.png)
-![Mock up about us](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_aboutUs.png)
-![Register user](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_registerUser.png)
-![Log in](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_logIn.png)
-![Home](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_home.png)
-![Create/Edit orchard](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_createEditOrchard.png)
-![Orchard](https://github.com/csd0/Grow.it/blob/master/public/imgs/mockUp_orchard.png)
-
--------------------------------------------------------
-
+### General structure
+![general_structure](doc/images/general_structure.png)
 
 ### Data model
+![Data model](doc/images/Data_model.png)
 
-![Data model](https://github.com/csd0/Grow.it/blob/master/public/imgs/Data_model.png)
+#### Client app
+![components](doc/images/components.png)
+
+#### API client
+HTTP connector client using [request-promise](https://github.com/request/request-promise)
+
+#### API server
+3 layers separation:
+* Routes/handlers: I/O layer
+* Logic: implement business logic
+* Models: define Mongoose schemas
+
+API reference detailed in [API server](https://github.com/csd0/REST-API-Server)
+
+
 
 -------------------------------------------------------
 
@@ -66,7 +84,7 @@ This application allows to connect people through a growing community of owned p
 | 2018-03-28 | Improvements, bug testing, hotfixes | 
 | 2018-03-30 | Demo day | 
 
-![Gantt](https://github.com/csd0/Grow.it/blob/master/public/imgs/Gantt.png)
+![Gantt](doc/images/Gantt.png)
 
 -------------------------------------------------------
 
@@ -74,4 +92,6 @@ This application allows to connect people through a growing community of owned p
 ### Links
 * Gestión de tareas en [Trello](https://trello.com/b/tXKaT7at)
 * [Repositorio](https://github.com/csd0/Grow.it) del proyecto
+* [API server](https://github.com/csd0/REST-API-Server)
 * [Surge](http://growit.surge.sh)
+  
